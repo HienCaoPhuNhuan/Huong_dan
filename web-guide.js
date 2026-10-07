@@ -82,15 +82,16 @@ function resetMotion(arm=true){
  if(!arm||$('motion').hidden)return;
  const trigger=$('trigger').value;
  if(trigger==='auto'||trigger==='timer')motionTimer=setTimeout(play,trigger==='auto'?0:Number($('motion-wait').value)*1000);
- if(trigger==='scroll'){motionObserver=new IntersectionObserver(entries=>{if(entries.some(e=>e.isIntersecting)&&!$('motion').hidden){motionObserver.disconnect();play()}},{root:$('motion-scroll'),threshold:.4});motionObserver.observe($('motion-stage'))}
+ if(trigger==='scroll'){motionObserver=new IntersectionObserver(entries=>{if(entries.some(e=>e.intersectionRatio>=.4)&&!$('motion').hidden){motionObserver.disconnect();play()}},{root:$('motion-scroll'),threshold:.4});motionObserver.observe($('motion-stage'))}
 }
 function updateMotionText(){
  ['duration','motion-wait','motion-gap'].forEach((id,i)=>$(['duration-value','wait-value','gap-value'][i]).textContent=$(id).value);
  $('play').textContent=$('trigger').value==='step'?'▶ Hiện đối tượng tiếp theo':'▶ Chạy thử';
- $('motion-request').textContent=$('motion-kind').selectedOptions[0].text+': '+$('effect').selectedOptions[0].text.toLowerCase()+', thời lượng '+$('duration').value+' giây; các đối tượng bắt đầu cách nhau '+$('motion-gap').value+' giây. Trigger: '+$('trigger').selectedOptions[0].text+'. '+($('trigger').value==='timer'?'Chờ '+$('motion-wait').value+' giây. ':'')+'Chạy một lần, giữ kết quả; có nút đặt lại. Khi rời section, hủy tác vụ đang chờ. Hỗ trợ giảm chuyển động.';updatePrompt()
+ $('motion-wait').disabled=$('trigger').value!=='timer';$('motion-gap').disabled=$('trigger').value==='step';$('duration').disabled=$('effect').value==='none';
+ $('motion-request').textContent=$('motion-kind').selectedOptions[0].text+': '+$('effect').selectedOptions[0].text.toLowerCase()+($('effect').value==='none'?'':', thời lượng '+$('duration').value+' giây')+($('trigger').value==='step'?'; mỗi lần bấm hiện thêm một đối tượng':'; các đối tượng bắt đầu cách nhau '+$('motion-gap').value+' giây')+'. Trigger: '+$('trigger').selectedOptions[0].text+'. '+($('trigger').value==='timer'?'Chờ '+$('motion-wait').value+' giây. ':'')+'Chạy một lần, giữ kết quả; có nút đặt lại. Khi rời section, hủy tác vụ đang chờ. Hỗ trợ giảm chuyển động.';updatePrompt()
 }
 function reveal(b,delay=0){
- b.style.visibility='visible';if(matchMedia('(prefers-reduced-motion: reduce)').matches||$('effect').value==='none')return;
+ b.style.visibility='visible';if(matchMedia('(prefers-reduced-motion: reduce)').matches||$('effect').value==='none'){if(delay)animations.push(b.animate([{opacity:0},{opacity:1}],{duration:1,delay,fill:'both'}));return}
  const frames={fade:[{opacity:0},{opacity:1}],slide:[{opacity:0,transform:'translateY(22px)'},{opacity:1,transform:'translateY(0)'}],left:[{opacity:0,transform:'translateX(-25px)'},{opacity:1,transform:'translateX(0)'}],zoom:[{opacity:0,transform:'scale(.85)'},{opacity:1,transform:'scale(1)'}],wipe:[{clipPath:'inset(0 100% 0 0)'},{clipPath:'inset(0 0 0 0)'}]};
  animations.push(b.animate(frames[$('effect').value],{duration:Number($('duration').value)*1000,delay,fill:'both',easing:'ease-out'}))
 }
