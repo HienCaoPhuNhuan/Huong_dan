@@ -22,7 +22,7 @@ function updatePrompt(){
  const sections=valid?count.value:'[điền số nguyên dương]',topic=$('topic').value.trim()||'[chủ đề]',repo=$('repo-url').value.trim(),content=$('content').value.trim();
  const lines=[`Tôi cần bài thuyết trình web về “${topic}” cho ${$('audience').value.trim()||'[người xem]'}, dự kiến ${sections} section. Cách xem: ${$('format').value}.`,`Tôi thích ${$('palette').value.toLowerCase()}; chữ dễ đọc trên máy chiếu và điện thoại.`];
  lines.push(content?`Dàn ý và minh chứng của tôi:\n${content}`:'Hãy đề xuất dàn ý để tôi duyệt, đánh dấu những minh chứng hoặc nguồn cần tôi bổ sung.');
- if(repo)lines.push(`Repo của bài: ${repo}. Hãy đọc phiên bản mới nhất và assets/README.md nếu có quyền truy cập. Sau khi tôi duyệt thiết kế, cập nhật bài trong repo khi môi trường hỗ trợ và báo rõ trạng thái; nếu không truy cập hoặc ghi được, hãy nói rõ.`);
+ if(repo)lines.push(`Repo bài thuyết trình của nhóm tôi: ${repo}. Hãy đọc phiên bản mới nhất nếu có quyền truy cập và sử dụng danh sách tài nguyên tôi cung cấp trong cuộc trò chuyện này. Sau khi tôi duyệt thiết kế, cập nhật bài trong repo của nhóm khi môi trường hỗ trợ và báo rõ trạng thái; nếu không truy cập hoặc ghi được, hãy nói rõ.`);
  else lines.push('Trước khi cập nhật, tôi sẽ cung cấp repo của bài.');
  const media=$('project-media').value.trim();if(media)lines.push(`Tài nguyên và cách dùng:\n${media}`);
  if($('prompt-detail').checked)lines.push(`Chi tiết tham khảo, dùng ở section có nội dung phù hợp:\n- ${layouts[$('layout-choice').value].request}\n- ${$('motion-request').textContent}\n- ${interactionRequests[$('interaction-choice').value]}`);
@@ -39,7 +39,7 @@ $('copy-prompt').onclick=()=>copyText($('prompt-output').value,'copy-status','pr
 $('download-prompt').onclick=()=>downloadText($('prompt-output').value,'yeu-cau-thiet-ke-web.txt');
 $('copy-personal').onclick=()=>copyText(`Thông tin về tôi:\n${$('personal-about').value}\n\nCách tôi muốn được hỗ trợ:\n${$('personal-response').value}`,'personal-status','personal-about');
 $('copy-assets').onclick=()=>copyText($('assets-map').value,'assets-status','assets-map');
-$('download-assets').onclick=()=>downloadText($('assets-map').value,'README.md');
+$('download-assets').onclick=()=>downloadText($('assets-map').value,'danh-sach-tai-nguyen.txt');
 let mediaUrl=null;
 function updateMedia(){
  const p=$('media-preview'),file=$('media-file').files[0];
