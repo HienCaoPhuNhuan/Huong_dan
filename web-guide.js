@@ -115,7 +115,7 @@ function updatePrompt(){
  if(repo)lines.push(`Repo bài thuyết trình của nhóm tôi: ${repo}. Hãy đọc phiên bản mới nhất nếu có quyền truy cập và sử dụng danh sách tài nguyên tôi cung cấp trong cuộc trò chuyện này. Sau khi tôi duyệt thiết kế, cập nhật bài trong repo của nhóm khi môi trường hỗ trợ và báo rõ trạng thái; nếu không truy cập hoặc ghi được, hãy nói rõ.`);
  else lines.push('Trước khi cập nhật, tôi sẽ cung cấp repo của bài.');
  const media=$('project-media').value.trim();if(media)lines.push(`Tài nguyên và cách dùng:\n${media}`);
- if($('prompt-detail').checked)lines.push(`Chi tiết tham khảo, dùng ở section có nội dung phù hợp:\n- ${layouts[$('layout-choice').value].request}\n- ${$('motion-request').textContent}\n- ${interactionRequests[$('interaction-choice').value]}`);
+ if($('prompt-detail').checked)lines.push(`Chi tiết tham khảo, dùng ở section có nội dung phù hợp:\n- ${layouts[$('layout-choice').value].request}\n- ${$('motion-request').textContent}\n- ${interactionRequests[$('interaction-choice').value]}`,$('structure-request').textContent,$('transition-request').textContent);
  lines.push($('offline').checked?'Bài cần chạy khi mất mạng sau khi tải đủ tệp: dùng tài nguyên trong assets và phông hệ thống; báo tài nguyên ngoài cần thay thế.':'Cho tôi biết tài nguyên nào cần kết nối Internet.');
  lines.push('Hãy đề xuất bố cục và chuyển động phù hợp, không bịa số liệu hoặc nguồn. Nếu còn thiếu thông tin thiết yếu, hỏi gộp trong một lượt; nêu rõ các giả định để tôi kiểm tra.');
  const signature=JSON.stringify([lines,valid]);
