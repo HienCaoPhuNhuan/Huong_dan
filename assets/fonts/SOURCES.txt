@@ -1,0 +1,17 @@
+Fonts retrieved from the official google/fonts repository on 2026-10-13.
+
+Be Vietnam Pro:
+https://github.com/google/fonts/tree/main/ofl/bevietnampro
+Copyright 2021 The Be Vietnam Pro Project Authors
+License: BeVietnamPro-OFL.txt
+Files: Regular (400), Bold (700)
+
+Lora:
+https://github.com/google/fonts/tree/main/ofl/lora
+Copyright 2011 The Lora Project Authors
+License: Lora-OFL.txt
+File: upright variable font, weight axis
+
+Converted to WOFF2 with fontTools and Brotli, without subsetting or changing names,
+glyph inventory, shaping tables or metrics. Original copyright/license metadata retained.
+Only required variants are included. See the adjacent license files for conditions.

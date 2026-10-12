@@ -184,4 +184,8 @@ $('media-file').addEventListener('change',updateMedia);$('image-fit').addEventLi
 window.addEventListener('pagehide',()=>{if(mediaUrl)URL.revokeObjectURL(mediaUrl)});
 document.addEventListener('visibilitychange',()=>{if(document.hidden){stopCarousel();stopMotion();youtubePlayer?.pauseVideo?.();document.querySelectorAll('audio,video').forEach(m=>m.pause())}});
 document.querySelectorAll('section > .table-wrap table').forEach(table=>{table.classList.add('mobile-table');const labels=[...table.querySelectorAll('thead th')].map(th=>th.textContent);table.querySelectorAll('tbody tr').forEach(row=>[...row.cells].forEach((cell,i)=>cell.dataset.label=labels[i]||''))});
-chooseKind();resetMotion(false);updateInteraction();show(tabs.some(t=>t.getAttribute('aria-controls')===location.hash.slice(1))?location.hash.slice(1):'media');
+const pageChoices=new URLSearchParams(location.search);
+if([...$('layout-kind').options].some(o=>o.value===pageChoices.get('kind')))$('layout-kind').value=pageChoices.get('kind');
+chooseKind();
+if(layouts[pageChoices.get('sample')]?.kind===$('layout-kind').value){$('layout-choice').value=pageChoices.get('sample');updateLayout()}
+resetMotion(false);updateInteraction();show(tabs.some(t=>t.getAttribute('aria-controls')===location.hash.slice(1))?location.hash.slice(1):'media');
