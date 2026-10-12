@@ -84,7 +84,7 @@
  }
  function ramp(from,to,pauseAtEnd=false){
   cancelAnimationFrame(rampFrame);audio.volume=from;const start=performance.now(),duration=Number($('effect-duration').value)*1000,current=token;
-  const tick=now=>{if(current!==token)return;const p=Math.min(1,(now-start)/duration);audio.volume=from+(to-from)*p;volumeDisplay();if(p<1)rampFrame=requestAnimationFrame(tick);else{rampFrame=0;if(pauseAtEnd)audio.pause();$('effect-status').textContent=pauseAtEnd?'Fade out hoàn tất: nhạc đã dừng.':'Chuyển âm lượng hoàn tất; nhạc tiếp tục ở mức mới.'}};
+  const tick=now=>{if(current!==token)return;const p=Math.max(0,Math.min(1,(now-start)/duration));audio.volume=Math.max(0,Math.min(1,from+(to-from)*p));volumeDisplay();if(p<1)rampFrame=requestAnimationFrame(tick);else{rampFrame=0;if(pauseAtEnd)audio.pause();$('effect-status').textContent=pauseAtEnd?'Fade out hoàn tất: nhạc đã dừng.':'Chuyển âm lượng hoàn tất; nhạc tiếp tục ở mức mới.'}};
   rampFrame=requestAnimationFrame(tick);
  }
  async function play(manual=true){
