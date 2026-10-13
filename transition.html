@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Transition giữa các section</title><link rel="stylesheet" href="styles.css?v=20261014"><link rel="stylesheet" href="presentation-guide.css?v=20261014"><link rel="stylesheet" href="course.css?v=20261014"></head><body><header><a class="brand" href="index.html#design">← THƯ VIỆN</a><span>2 · Transition giữa các section</span></header><main class="lesson-main"><h1>Transition giữa các section</h1><p class="lead">Section cũ rời đi, section mới xuất hiện; cách quay lại và điều kiện dừng.</p><div class="lesson-layout"><nav class="lesson-nav" aria-label="Nội dung bài"><a href="#transitions">Transition: chuyển từ section này sang section khác</a><a href="#part-1">Đối chiếu với PowerPoint, nhưng không hứa giống từng pixel</a><a href="#part-2">Thời điểm và trạng thái cũng là một phần của transition</a></nav><div class="lesson-content"><section id="transitions">
+<h2>Transition: chuyển từ section này sang section khác</h2>
+<p>Animation tác động lên chữ/ảnh <strong>trong một section</strong>. Transition xử lý <strong>section cũ rời đi và section mới xuất hiện</strong>. Cấu trúc bài quyết định người xem đi từ phần này sang phần khác bằng cách nào. Ba lựa chọn này độc lập; không cần dùng một hiệu ứng cho mọi chỗ.</p>
+<div class="two"><div class="controls">
+<label for="transition-effect">Kiểu chuyển section</label><select id="transition-effect"></select>
+<label for="transition-direction">Hướng chuyển tới</label><select id="transition-direction"><option value="forward">Từ phải sang trái / từ dưới lên</option><option value="reverse">Từ trái sang phải / từ trên xuống</option></select>
+<label for="transition-duration">Thời lượng chuyển</label><select id="transition-duration"><option value="400">0,4 giây</option><option value="700" selected="">0,7 giây</option><option value="1200">1,2 giây (quan sát mẫu)</option></select>
+<label for="transition-easing">Nhịp chuyển</label><select id="transition-easing"><option value="ease-in-out">Chậm đầu/cuối (ease-in-out)</option><option value="ease-out">Chậm dần về cuối (ease-out)</option><option value="linear">Đều (linear)</option></select>
+<div class="pill-row"><button id="transition-prev" title="Section trước" aria-label="Section trước">←</button><button id="transition-next" title="Section sau" aria-label="Section sau">→</button><button id="transition-replay" title="Chạy lại lần chuyển vừa rồi" aria-label="Chạy lại transition">↻</button></div>
+<label class="checkbox"><input id="transition-auto" type="checkbox">Tự chuyển sau 5 giây đọc, tính từ lúc chuyển xong</label>
+<label class="checkbox"><input id="transition-loop" type="checkbox">Quay về đầu khi hết bài</label>
+<button id="transition-stop">Dừng tự chuyển</button>
+<p id="transition-use" class="muted"></p>
+</div><div><div id="transition-stage" class="transition-stage" tabindex="0" aria-label="Bài mẫu chuyển section"></div>
+<p id="transition-status" class="feedback" aria-live="polite"></p><p class="result-caption"><strong>Câu yêu cầu tạo ra kiểu chuyển này:</strong></p><div id="transition-request" class="request"></div>
+<button id="transition-copy">Sao chép yêu cầu transition</button><p id="transition-copy-status" class="feedback" aria-live="polite"></p></div></div>
+<h3 class="rule" id="part-1">Đối chiếu với PowerPoint, nhưng không hứa giống từng pixel</h3>
+<div class="table-wrap"><table><thead><tr><th>Nhóm</th><th>Khác nhau ở đâu?</th><th>Cần mô tả cho AI</th></tr></thead><tbody>
+<tr><td>Fade / Dissolve</td><td>Hai section đổi độ trong suốt, không đổi vị trí.</td><td>Chuyển cả section hay chỉ nền; thời lượng; lúc nào bắt đầu hiệu ứng của nội dung mới.</td></tr>
+<tr><td>Push / Cover / Uncover</td><td>Push: cả hai trượt; Cover: section mới phủ section cũ đứng yên; Uncover: section cũ trượt đi để lộ phần mới.</td><td>Hướng, thứ tự lớp, hành vi khi quay lại; không gọi chung tất cả là “slide”.</td></tr>
+<tr><td>Wipe / Split / Reveal</td><td>Thay đổi vùng nhìn thấy bằng mặt nạ; không nhất thiết di chuyển chữ hay ảnh.</td><td>Mở từ mép nào, từ giữa hay hai phía; ngang/dọc; không cắt phần đang đọc sau khi kết thúc.</td></tr>
+<tr><td>Zoom / Flip / xoay phối cảnh</td><td>Phóng/thu hoặc xoay mặt phẳng, dễ tạo cảm giác chuyển động mạnh.</td><td>Điểm neo, mức phóng, trục xoay, thời lượng; giảm chuyển động đổi sang cắt ngay hoặc fade.</td></tr>
+<tr><td>Morph / đối tượng chung</td><td>Đối tượng nhận diện là cùng một ảnh/khối sẽ đổi vị trí và kích thước giữa hai bố cục. Không phải tự hiểu mọi đối tượng như PowerPoint.</td><td>Ảnh/khối nào cần giữ, vị trí trước/sau, có cắt ảnh không. Mẫu ghép cùng ảnh và tiêu đề, không biến ảnh này thành ảnh khác.</td></tr>
+<tr><td>Lật trang, khối lập phương, rèm, hạt, chất lỏng</td><td>Có thể mô phỏng bằng CSS/JS; yêu cầu phức tạp có thể cần canvas, WebGL hoặc thư viện, không chỉ một thuộc tính CSS.</td><td>Đưa ảnh/video tham chiếu, mô tả chuyển động và mức ưu tiên. Thử trên thiết bị thật, có bản thay thế nhẹ; không mặc định hiệu ứng PowerPoint có bản sao chính xác.</td></tr>
+</tbody></table></div>
+<h3 id="part-2">Thời điểm và trạng thái cũng là một phần của transition</h3><ol>
+<li>Nêu trigger: bấm nút, phím, chạm, hoặc tự chuyển; không chiếm phím khi đang nhập.</li>
+<li>Nêu cách quay lại: đảo chiều, dùng cùng hiệu ứng hay cắt ngay; ở đầu/cuối dừng hay quay vòng.</li>
+<li>Trong lúc chuyển: khóa thao tác trùng hoặc xếp hàng; không để bấm nhanh tạo nhiều section chồng nhau.</li>
+<li>Sau khi chuyển xong mới chạy animation nội dung; dừng media của section cũ; chỉ section hiện tại được tương tác.</li>
+<li>Về section cũ: giữ trạng thái hay chạy lại? Đổi kích thước màn hình không làm mất vị trí hoặc câu trả lời.</li>
+</ol>
+<p class="request">“Bài có 12 section. Dùng Push ngang 0,5 giây; sang phần sau từ phải vào, quay lại đảo chiều. Bấm/phím để chuyển, không tự chuyển. Chuyển xong mới hiện các ý; video phần cũ dừng. Quay lại giữ trạng thái; ở section cuối không quay vòng. Khi giảm chuyển động, cắt ngay.”</p>
+<details><summary>Những hiệu ứng web khác có thể yêu cầu</summary><p>Nhấn mạnh: đổi màu, rung nhẹ khi nhập sai, pulse một lần; kết thúc: fade/slide out; đường chuyển động: đối tượng theo đường dẫn; chuỗi: nhiều keyframe, nhịp khác nhau; cuộn: parallax, thanh tiến độ, ảnh ghim; chữ: đánh máy, tô sáng theo lời; ảnh: phóng lớn/lightbox, before–after có thanh kéo. Nêu rõ đối tượng, điểm đầu/cuối, thứ tự và điều kiện dừng. Không dùng nhấp nháy nhanh hoặc tự chạy chữ dài khiến người nghe khó đọc.</p></details>
+<p class="source-note">Mẫu minh họa dùng <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API">Web Animations API</a> và <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/transform">CSS transform</a>; không cần học cú pháp để mô tả kết quả.</p>
+</section><div class="chapter-actions"><a href="index.html#design">← Về nhóm 2</a><a href="interaction.html">Bài tiếp theo →</a></div></div></div></main><footer>Quan sát · Lựa chọn · Mô tả · Kiểm chứng</footer><script src="design-labs.js?v=20261014"></script><script src="presentation-guide.js?v=20261014"></script><script src="course.js?v=20261014"></script></body></html>

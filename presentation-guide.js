@@ -1,6 +1,7 @@
 (() => {
  const el=id=>document.getElementById(id);
  const photo='https://images.unsplash.com/photo-1437482078695-73f5ca6c96e2?w=800&auto=format&fit=crop&q=80';
+ if(el('transition-effect')){
  const effects=[
  ['cut','Cắt ngay / Cut','Hợp khi muốn chuyển nhanh, không gây chuyển động.','Cắt trực tiếp, không animation.'],
  ['fade','Mờ chồng / Fade','Nhẹ, hợp khi không cần thể hiện hướng di chuyển.','Section cũ mờ đi đồng thời section mới hiện dần.'],
@@ -79,6 +80,8 @@
  document.addEventListener('visibilitychange',()=>{if(document.hidden){pause();if(busy)cancel();update()}});
  window.addEventListener('resize',()=>{if(busy)cancel()});
  render();update();
+ }
+ if(el('structure-choice')){
  const structures=[
  ['deck','Từng section như slide','Hợp thuyết trình có người điều khiển.','Mỗi lần chỉ một section; có trước/sau, chỉ báo và mục lục; phần dài cho cuộn bên trong, không cắt chữ.'],
  ['scroll','Trang cuộn dọc','Hợp người xem tự đọc theo thứ tự.','Các section nối tiếp trong trang cuộn dọc; mục lục dẫn tới ID; chiều cao theo nội dung.'],
@@ -110,7 +113,8 @@
   }else if(id==='poster')p.innerHTML='<h3>Bảo vệ nguồn nước</h3><img src="'+photo+'" alt="Dòng suối"><div class="poster-items">'+titles.map((t,i)=>'<article>'+content(i)+'</article>').join('')+'</div><strong>Kết luận: bắt đầu từ thói quen hằng ngày.</strong>';
   else if(id==='dashboard')p.innerHTML='<h3>Khảo sát giả định</h3><div class="dashboard-stats"><p><strong>12</strong><br>chai / tuần 1</p><p><strong>28</strong><br>chai / tuần 3</p></div><p>Đơn vị: chai dùng lại. Số liệu minh họa, cần thay bằng dữ liệu thật.</p><p>Kết luận: lượng chai dùng lại tăng trong ví dụ.</p>';
   else p.innerHTML=titles.map((t,i)=>'<article>'+content(i)+'<img src="'+photo+'" alt="Dòng suối, ảnh minh họa"></article>').join('');
-  el('structure-use').textContent=use;el('structure-request').textContent='Cấu trúc toàn bài: '+request;updatePrompt();
+  el('structure-use').textContent=use;el('structure-request').textContent='Cấu trúc toàn bài: '+request;if(typeof updatePrompt==='function')updatePrompt();
  }
  el('structure-choice').onchange=structure;structure();
+ }
 })();

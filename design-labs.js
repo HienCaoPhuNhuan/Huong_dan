@@ -1,8 +1,6 @@
 const $=id=>document.getElementById(id);
-const tabs=[...document.querySelectorAll('[role=tab]')];
-function show(id){document.querySelectorAll('[role=tabpanel] audio,[role=tabpanel] video').forEach(m=>{if(m.closest('[role=tabpanel]').id!==id)m.pause()});if(id!=='media')youtubePlayer?.pauseVideo?.();if(id!=='layout')stopCarousel();if(id!=='motion')stopMotion();tabs.forEach(t=>{const active=t.getAttribute('aria-controls')===id;t.setAttribute('aria-selected',active);t.tabIndex=active?0:-1;$(t.getAttribute('aria-controls')).hidden=!active});if(id==='motion')resetMotion();history.replaceState(null,'','#'+id)}
-tabs.forEach((t,i)=>{t.addEventListener('click',()=>show(t.getAttribute('aria-controls')));t.addEventListener('keydown',e=>{let n=i;if(e.key==='ArrowRight')n=(i+1)%tabs.length;else if(e.key==='ArrowLeft')n=(i+tabs.length-1)%tabs.length;else if(e.key==='Home')n=0;else if(e.key==='End')n=tabs.length-1;else return;e.preventDefault();tabs[n].focus();show(tabs[n].getAttribute('aria-controls'))})});
-document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>{show(b.dataset.go);$('tab-'+b.dataset.go).focus()}));
+function show(id){const routes={media:'tai-nguyen-bai.html',layout:'bo-cuc.html',motion:'animation.html',transitions:'transition.html',interaction:'interaction.html',prompt:'yeu-cau-chatgpt.html',origin:'web-la-gi.html'};if(routes[id])location.href=routes[id]+'#'+id}
+document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>show(b.dataset.go)));
 const photo='https://images.unsplash.com/photo-1437482078695-73f5ca6c96e2?w=800&auto=format&fit=crop&q=80';
 const layouts={};
 function preset(id,kind,title,use,request){layouts[id]={kind,title,use,request}}
@@ -45,7 +43,7 @@ function updateLayout(){
  else if(v==='caption')html=image('Dòng suối · Ảnh minh họa từ Unsplash')+words;
  else if(v==='overlay')html='<div class="overlay-sample">'+image('')+'<h3>Bảo vệ nguồn nước</h3></div>';
  else if(v==='video')html='<div class="mixed-grid"><div><div class="av-placeholder">Video của nhóm</div><button data-go="media">Chọn video YouTube để thử</button></div>'+words+'</div>';
- else if(v==='audio')html='<h3>Âm thanh và bản lời</h3><p>Chọn tệp âm thanh của nhóm ở mục 1 để nghe thử.</p><button data-go="media">Chọn âm thanh</button><blockquote>Bản lời: Hãy bắt đầu từ những hành động nhỏ để bảo vệ nguồn nước...</blockquote>';
+ else if(v==='audio')html='<h3>Âm thanh và bản lời</h3><p>Chọn tệp của nhóm trong bài Chuẩn bị nội dung và đa phương tiện để nghe thử.</p><button data-go="media">Chọn âm thanh</button><blockquote>Bản lời: Hãy bắt đầu từ những hành động nhỏ để bảo vệ nguồn nước...</blockquote>';
  else if(v==='chart')html='<h3>Số chai dùng lại / tuần</h3><p class="muted">Dữ liệu giả định, không phải kết quả khảo sát.</p>'+[12,20,28].map((n,i)=>'<div class="bar-row"><span>Tuần '+(i+1)+'</span><div class="bar" style="width:'+n/28*65+'%">'+n+'</div></div>').join('')+'<details><summary>Bảng dữ liệu</summary><p>Tuần 1: 12; tuần 2: 20; tuần 3: 28 chai.</p></details>';
  else if(v==='table')html='<h3>Khảo sát giả định</h3><div class="table-wrap"><table><tr><th>Tuần</th><th>Số chai dùng lại</th><th>Đơn vị</th></tr><tr><td>1</td><td>12</td><td>chai</td></tr><tr><td>2</td><td>20</td><td>chai</td></tr></table></div>';
  else if(v==='document')html='<h3>Tài liệu tham khảo</h3><p>assets/documents/tai-lieu.pdf</p><p>Chỉ tạo nút mở/tải khi đã có tệp thật. Tệp Word không hiển thị trực tiếp như PDF trên nhiều trình duyệt.</p><a href="https://docs.github.com/en/pages" target="_blank" rel="noopener">Ví dụ link tài liệu: GitHub Pages</a>';
@@ -72,7 +70,7 @@ function updateLayout(){
  }
  $('layout-use').textContent=item.use;$('layout-request').textContent=item.request;updatePrompt();
 }
-$('layout-kind').onchange=chooseKind;['layout-choice','device'].forEach(id=>$(id).addEventListener('change',updateLayout));
+if($('layout-kind')){$('layout-kind').onchange=chooseKind;['layout-choice','device'].forEach(id=>$(id).addEventListener('change',updateLayout))}
 let motionIndex=0,motionTimer,animations=[],motionObserver;
 function stopMotion(){clearTimeout(motionTimer);motionObserver?.disconnect();animations.forEach(a=>a.cancel());animations=[]}
 function resetMotion(arm=true){
@@ -99,14 +97,17 @@ function play(){
  if($('trigger').value==='step'){if(motionIndex>=3)resetMotion(false);reveal($('motion-stage').children[motionIndex++]);$('motion-status').textContent='Đã hiện '+motionIndex+'/3 đối tượng.'}
  else{const scroll=$('motion-scroll').scrollTop;resetMotion(false);$('motion-scroll').scrollTop=scroll;[...$('motion-stage').children].forEach((b,i)=>reveal(b,i*Number($('motion-gap').value)*1000));motionIndex=3;$('motion-status').textContent='Đã kích hoạt cả tổ hợp, chạy một lần.'}
 }
+if($('motion')){
 $('play').onclick=play;$('reset-motion').onclick=()=>resetMotion();
 ['motion-kind','effect','trigger','duration','motion-wait','motion-gap'].forEach(id=>$(id).addEventListener('input',()=>resetMotion()));
 ['mouseenter','focusin'].forEach(event=>$('motion-scroll').addEventListener(event,()=>{if($('trigger').value==='hover'&&motionIndex===0)play()}));
+}
 const interactionRequests={reveal:'Ban đầu ẩn đáp án. Bấm nút Xem đáp án để mở; nút đổi thành Ẩn đáp án và bấm lại để đóng.',tabs:'Có hai tab Nguyên nhân và Giải pháp. Chỉ hiện nội dung của tab đang chọn, đánh dấu rõ tab đó.',quiz:'Tạo câu hỏi trắc nghiệm có ba phương án. Khi chọn, báo đúng/sai kèm giải thích; cho phép chọn lại.',slides:'Tạo ba màn hình; mỗi lần chỉ hiện một màn hình. Có nút trước/sau, phím trái/phải và chỉ báo vị trí; vô hiệu hóa nút ở đầu/cuối.'};
 function updateInteraction(){const v=$('interaction-choice').value,p=$('interaction-preview');if(v==='reveal'){p.innerHTML='<h3>Vì sao cần sửa vòi nước bị rò?</h3><button class="primary" id="answer-toggle" aria-expanded="false">Xem đáp án</button><p id="answer" class="rule" hidden>Vòi rò gây thất thoát nước liên tục, kể cả khi không sử dụng.</p>';$('answer-toggle').onclick=()=>{const open=$('answer').hidden;$('answer').hidden=!open;$('answer-toggle').textContent=open?'Ẩn đáp án':'Xem đáp án';$('answer-toggle').setAttribute('aria-expanded',open)}}else if(v==='tabs'){p.innerHTML='<h3>Bảo vệ nguồn nước</h3><div class="pill-row"><button id="cause" class="primary" aria-pressed="true">Nguyên nhân</button><button id="solution" aria-pressed="false">Giải pháp</button></div><p id="subcontent">Nước thải chưa xử lý, rác và sử dụng lãng phí.</p>';['cause','solution'].forEach(id=>$(id).onclick=()=>{['cause','solution'].forEach(x=>{$(x).classList.toggle('primary',x===id);$(x).setAttribute('aria-pressed',x===id)});$('subcontent').textContent=id==='cause'?'Nước thải chưa xử lý, rác và sử dụng lãng phí.':'Xử lý nước thải, thu gom rác và thay đổi thói quen.'})}else if(v==='quiz'){p.innerHTML='<h3>Hành động nào giúp tiết kiệm nước?</h3><div class="quiz-options"><button data-answer="0">Để vòi mở khi đánh răng</button><button data-answer="1">Sửa vòi bị rò</button><button data-answer="0">Xả nước liên tục khi rửa đồ</button></div><p id="quiz-feedback" aria-live="polite"></p>';p.querySelectorAll('[data-answer]').forEach(b=>b.onclick=()=>{$('quiz-feedback').textContent=b.dataset.answer==='1'?'Đúng. Sửa vòi rò giúp giảm lượng nước thất thoát liên tục.':'Chưa đúng. Hãy chọn hành động giảm thất thoát hoặc thời gian mở vòi.'})}else{let index=0;const titles=['Vấn đề','Nguyên nhân','Giải pháp'],body=['Nguồn nước cần được bảo vệ.','Nước thải, rác và thói quen sử dụng.','Hành động từ gia đình và cộng đồng.'];p.innerHTML='<div tabindex="0" id="mini-slide"><h3 id="mini-title"></h3><p id="mini-body"></p><div class="pill-row"><button id="prev" aria-label="Màn hình trước">←</button><span id="slide-count"></span><button id="next" aria-label="Màn hình tiếp theo">→</button></div></div>';const render=()=>{$('mini-title').textContent=titles[index];$('mini-body').textContent=body[index];$('slide-count').textContent=`${index+1} / 3`;$('prev').disabled=index===0;$('next').disabled=index===2};$('prev').onclick=()=>{index=Math.max(0,index-1);render()};$('next').onclick=()=>{index=Math.min(2,index+1);render()};$('mini-slide').onkeydown=e=>{if(['ArrowLeft','ArrowRight'].includes(e.key)){e.preventDefault();index=Math.max(0,Math.min(2,index+(e.key==='ArrowRight'?1:-1)));render()}};render()}$('interaction-request').textContent=interactionRequests[v];updatePrompt()}
-$('interaction-choice').addEventListener('change',updateInteraction);
+if($('interaction-choice'))$('interaction-choice').addEventListener('change',updateInteraction);
 let promptSignature='';
 function updatePrompt(){
+ if(!$('prompt-output'))return;
  const count=$('screens'),valid=count.validity.valid&&count.value!==''&&Number.isSafeInteger(Number(count.value))&&Number(count.value)>0;
  count.setAttribute('aria-invalid',String(!valid));
  const sections=valid?count.value:'[điền số nguyên dương]',topic=$('topic').value.trim()||'[chủ đề]',repo=$('repo-url').value.trim(),content=$('content').value.trim();
@@ -115,21 +116,25 @@ function updatePrompt(){
  if(repo)lines.push(`Repo bài thuyết trình của nhóm tôi: ${repo}. Hãy đọc phiên bản mới nhất nếu có quyền truy cập và sử dụng danh sách tài nguyên tôi cung cấp trong cuộc trò chuyện này. Sau khi tôi duyệt thiết kế, cập nhật bài trong repo của nhóm khi môi trường hỗ trợ và báo rõ trạng thái; nếu không truy cập hoặc ghi được, hãy nói rõ.`);
  else lines.push('Trước khi cập nhật, tôi sẽ cung cấp repo của bài.');
  const media=$('project-media').value.trim();if(media)lines.push(`Tài nguyên và cách dùng:\n${media}`);
- if($('prompt-detail').checked)lines.push(`Chi tiết tham khảo, dùng ở section có nội dung phù hợp:\n- ${layouts[$('layout-choice').value].request}\n- ${$('motion-request').textContent}\n- ${interactionRequests[$('interaction-choice').value]}`,$('structure-request').textContent,$('transition-request').textContent);
+ if($('design-brief')?.value.trim())lines.push('Các lựa chọn thiết kế đã duyệt:\n'+$('design-brief').value.trim());
  lines.push($('offline').checked?'Bài cần chạy khi mất mạng sau khi tải đủ tệp: dùng tài nguyên trong assets và phông hệ thống; báo tài nguyên ngoài cần thay thế.':'Cho tôi biết tài nguyên nào cần kết nối Internet.');
  lines.push('Hãy đề xuất bố cục và chuyển động phù hợp, không bịa số liệu hoặc nguồn. Nếu còn thiếu thông tin thiết yếu, hỏi gộp trong một lượt; nêu rõ các giả định để tôi kiểm tra.');
  const signature=JSON.stringify([lines,valid]);
  if(signature!==promptSignature){$('prompt-output').value=lines.join('\n\n');promptSignature=signature}
  $('copy-status').textContent=valid?'':'Nhập số section là số nguyên dương trước khi dùng bản yêu cầu.';
 }
-['topic','audience','screens','format','palette','content','offline','repo-url','project-media','prompt-detail'].forEach(id=>$(id).addEventListener('input',updatePrompt));
+['topic','audience','screens','format','palette','content','offline','repo-url','project-media','design-brief'].forEach(id=>$(id)?.addEventListener('input',updatePrompt));
 async function copyText(text,status,fallback){try{await navigator.clipboard.writeText(text);$(status).textContent='Đã sao chép.'}catch{if(fallback){$(fallback).focus();$(fallback).select()}$(status).textContent='Không sao chép tự động được. Chọn văn bản để sao chép hoặc tải tệp.'}}
 function downloadText(text,name){const a=document.createElement('a'),url=URL.createObjectURL(new Blob([text],{type:'text/plain;charset=utf-8'}));a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)}
+if($('copy-prompt')){
 $('copy-prompt').onclick=()=>copyText($('prompt-output').value,'copy-status','prompt-output');
 $('download-prompt').onclick=()=>downloadText($('prompt-output').value,'yeu-cau-thiet-ke-web.txt');
-$('copy-personal').onclick=()=>copyText(`Thông tin về tôi:\n${$('personal-about').value}\n\nCách tôi muốn được hỗ trợ:\n${$('personal-response').value}`,'personal-status','personal-about');
+if($('copy-personal'))$('copy-personal').onclick=()=>copyText(`Thông tin về tôi:\n${$('personal-about').value}\n\nCách tôi muốn được hỗ trợ:\n${$('personal-response').value}`,'personal-status','personal-about');
+}
+if($('copy-assets')){
 $('copy-assets').onclick=()=>copyText($('assets-map').value,'assets-status','assets-map');
 $('download-assets').onclick=()=>downloadText($('assets-map').value,'danh-sach-tai-nguyen.txt');
+}
 let youtubePlayer=null,youtubeApiPromise=null,youtubeLoadToken=0;
 function youtubeConfig(){
  const raw=$('youtube-url').value.trim();let id=raw;
@@ -148,6 +153,7 @@ function loadYoutubeApi(){
  youtubeApiPromise=new Promise((resolve,reject)=>{const script=document.createElement('script');let timer;const fail=()=>{clearTimeout(timer);script.remove();youtubeApiPromise=null;reject(new Error('Không tải được YouTube. Kiểm tra mạng hoặc dùng link dự phòng.'))};window.onYouTubeIframeAPIReady=()=>{clearTimeout(timer);resolve()};script.src='https://www.youtube.com/iframe_api';script.onerror=fail;timer=setTimeout(fail,15000);document.head.append(script)});return youtubeApiPromise
 }
 function closeYoutube(){youtubeLoadToken++;youtubePlayer?.destroy?.();youtubePlayer=null;$('youtube-preview').textContent='Video đã đóng.'}
+if($('youtube-stop')){
 $('youtube-stop').onclick=()=>{closeYoutube();$('youtube-status').textContent='Đã dừng và đóng trình phát.'};
 $('youtube-load').onclick=async()=>{
  const c=youtubeConfig();youtubePrompt();if(!c){$('youtube-status').textContent='Kiểm tra link và mốc thời gian trước khi xem thử.';return}
@@ -165,6 +171,7 @@ $('youtube-load').onclick=async()=>{
 ['youtube-url','youtube-start','youtube-end','youtube-auto','youtube-muted','youtube-loop'].forEach(id=>$(id).addEventListener('input',youtubePrompt));
 $('youtube-copy').onclick=()=>copyText($('youtube-output').value,'youtube-status','youtube-output');
 youtubePrompt();
+}
 let mediaUrl=null;
 function updateMedia(){
  const p=$('media-preview'),file=$('media-file').files[0];
@@ -180,12 +187,16 @@ function updateMedia(){
  const folder=kind==='image'?'images':kind==='audio'?'audio':'video';
  $('media-request').textContent=kind==='image'?`“Sau khi đưa tệp vào assets/${folder}/[ten-tep-khong-dau], dùng ảnh ở section [số]. ${$('image-fit').value==='contain'?'Giữ toàn bộ ảnh, không cắt chi tiết.':'Lấp đầy khung; cho phép cắt mép ảnh, giữ đối tượng chính.'} Thêm chú thích và nguồn.”`:`“Sau khi đưa tệp vào assets/${folder}/[ten-tep-khong-dau], dùng ở section [số], có nút phát/dừng, bấm mới phát và dừng khi rời section. Tôi sẽ cung cấp ${kind==='audio'?'bản lời':'tóm tắt và phụ đề nếu có'}.”`;
 }
-$('media-file').addEventListener('change',updateMedia);$('image-fit').addEventListener('change',updateMedia);
+if($('media-file')){$('media-file').addEventListener('change',updateMedia);$('image-fit').addEventListener('change',updateMedia)}
 window.addEventListener('pagehide',()=>{if(mediaUrl)URL.revokeObjectURL(mediaUrl)});
 document.addEventListener('visibilitychange',()=>{if(document.hidden){stopCarousel();stopMotion();youtubePlayer?.pauseVideo?.();document.querySelectorAll('audio,video').forEach(m=>m.pause())}});
 document.querySelectorAll('section > .table-wrap table').forEach(table=>{table.classList.add('mobile-table');const labels=[...table.querySelectorAll('thead th')].map(th=>th.textContent);table.querySelectorAll('tbody tr').forEach(row=>[...row.cells].forEach((cell,i)=>cell.dataset.label=labels[i]||''))});
 const pageChoices=new URLSearchParams(location.search);
+if($('layout-kind')){
 if([...$('layout-kind').options].some(o=>o.value===pageChoices.get('kind')))$('layout-kind').value=pageChoices.get('kind');
 chooseKind();
 if(layouts[pageChoices.get('sample')]?.kind===$('layout-kind').value){$('layout-choice').value=pageChoices.get('sample');updateLayout()}
-resetMotion(false);updateInteraction();show(tabs.some(t=>t.getAttribute('aria-controls')===location.hash.slice(1))?location.hash.slice(1):'media');
+}
+if($('motion'))resetMotion();
+if($('interaction-choice'))updateInteraction();
+updatePrompt();
