@@ -11,3 +11,12 @@
 @media(hover:hover) and (pointer:fine){.topic-links>a:hover{background:#ffffffd9;transform:translateY(-2px);box-shadow:0 5px 12px #1725210b}.topic-links>a:hover strong{color:var(--topic);text-decoration:none}.topic-links>a:hover::after{transform:translate(2px,-2px)}}
 @media(max-width:760px){.library-photo{height:132px}.library-photo figcaption{font-size:11px}.topic-heading{padding:0 14px}.topic-links{margin:0 14px}.topic-links>a{min-height:88px;padding-right:34px}.course-toc{gap:8px 16px}.lesson-nav a{padding:6px 8px}.lesson-main>h1{padding-left:12px}}
 @media(prefers-reduced-motion:reduce){.topic-links>a,.topic-links>a::after,.course-toc a,.lesson-nav a{transition:none!important;transform:none!important}}
+@keyframes title-arrival{from{opacity:.35;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes section-arrival{from{opacity:.65;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes link-arrival{from{opacity:.55}to{opacity:1}}
+.course-home>h1,.lesson-main>h1{animation:title-arrival .5s ease-out both}
+.topic-band.section-arrived{animation:section-arrival .55s ease-out both}.section-arrived .topic-links>a{animation:link-arrival .45s ease-out both;animation-delay:var(--arrival-delay,0ms)}
+[data-flow]{counter-reset:flow-step;gap:14px}[data-flow]>article{counter-increment:flow-step;position:relative;padding:16px 12px 12px;transition:background-color .3s ease,border-color .3s ease;min-width:0}[data-flow]>article::before{content:counter(flow-step,decimal-leading-zero);display:block;font-size:12px;font-weight:700;color:#52625b;margin-bottom:8px}[data-flow]>article:not(:last-child)::after{content:'→';position:absolute;right:-12px;top:22px;color:#087957;font-size:18px;z-index:1}[data-flow]>.flow-current{background:#e3f3e9;border-top-color:#087957;box-shadow:inset 0 -3px #087957}[data-flow]>.flow-done{background:#f0f6f3}[data-flow]>.flow-current::before{color:#075f45}
+.flow-controls{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:-8px 0 24px;min-height:46px}.flow-controls button{width:44px;height:44px;padding:0;flex:none;font-size:20px}.flow-status{font-size:13px;line-height:1.6;margin:0;flex:1;min-width:160px;color:#204d39}
+@media(max-width:760px){[data-flow]>article::after{display:none}.flow-status{flex-basis:calc(100% - 110px)}}
+@media(prefers-reduced-motion:reduce){.course-home>h1,.lesson-main>h1,.topic-band.section-arrived,.section-arrived .topic-links>a{animation:none!important}[data-flow]>article{transition:none!important}}
