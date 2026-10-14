@@ -1,0 +1,183 @@
+{
+  "library": "useAnimations",
+  "license": "MIT",
+  "catalog": "https://useanimations.com/icons.json",
+  "downloaded": "2026-10-14",
+  "icons": [
+    {
+      "id": "user",
+      "page": "https://useanimations.com/icons/user",
+      "json": "https://useanimations.com/icons/user.json",
+      "svg": "https://useanimations.com/icons/user/user.svg",
+      "requiresFullPlayer": false
+    },
+    {
+      "id": "git-branch",
+      "page": "https://useanimations.com/icons/git-branch",
+      "json": "https://useanimations.com/icons/git-branch.json",
+      "svg": "https://useanimations.com/icons/git-branch/git-branch.svg",
+      "requiresFullPlayer": false
+    },
+    {
+      "id": "smartphone",
+      "page": "https://useanimations.com/icons/smartphone",
+      "json": "https://useanimations.com/icons/smartphone.json",
+      "svg": "https://useanimations.com/icons/smartphone/smartphone.svg",
+      "requiresFullPlayer": false
+    },
+    {
+      "id": "book-open",
+      "page": "https://useanimations.com/icons/book-open",
+      "json": "https://useanimations.com/icons/book-open.json",
+      "svg": "https://useanimations.com/icons/book-open/book-open.svg",
+      "requiresFullPlayer": false
+    },
+    {
+      "id": "toggle",
+      "page": "https://useanimations.com/icons/toggle",
+      "json": "https://useanimations.com/icons/toggle.json",
+      "svg": "https://useanimations.com/icons/toggle/toggle-left.svg",
+      "requiresFullPlayer": false
+    },
+    {
+      "id": "code",
+      "page": "https://useanimations.com/icons/code",
+      "json": "https://useanimations.com/icons/code.json",
+      "svg": "https://useanimations.com/icons/code/code.svg",
+      "requiresFullPlayer": false
+    },
+    {
+      "id": "upload-cloud",
+      "page": "https://useanimations.com/icons/upload-cloud",
+      "json": "https://useanimations.com/icons/upload-cloud.json",
+      "svg": "https://useanimations.com/icons/upload-cloud/upload-cloud.svg",
+      "requiresFullPlayer": false
+    },
+    {
+      "id": "grid",
+      "page": "https://useanimations.com/icons/grid",
+      "json": "https://useanimations.com/icons/grid.json",
+      "svg": "https://useanimations.com/icons/grid/grid.svg",
+      "requiresFullPlayer": false
+    },
+    {
+      "id": "layout",
+      "page": "https://useanimations.com/icons/layout",
+      "json": "https://useanimations.com/icons/layout.json",
+      "svg": "https://useanimations.com/icons/layout/layout.svg",
+      "requiresFullPlayer": false
+    },
+    {
+      "id": "type",
+      "page": "https://useanimations.com/icons/type",
+      "json": "https://useanimations.com/icons/type.json",
+      "svg": "https://useanimations.com/icons/type/type.svg",
+      "requiresFullPlayer": false
+    },
+    {
+      "id": "pen-tool",
+      "page": "https://useanimations.com/icons/pen-tool",
+      "json": "https://useanimations.com/icons/pen-tool.json",
+      "svg": "https://useanimations.com/icons/pen-tool/pen-tool.svg",
+      "requiresFullPlayer": false
+    },
+    {
+      "id": "film",
+      "page": "https://useanimations.com/icons/film",
+      "json": "https://useanimations.com/icons/film.json",
+      "svg": "https://useanimations.com/icons/film/film.svg",
+      "requiresFullPlayer": false
+    },
+    {
+      "id": "move",
+      "page": "https://useanimations.com/icons/move",
+      "json": "https://useanimations.com/icons/move.json",
+      "svg": "https://useanimations.com/icons/move/move.svg",
+      "requiresFullPlayer": false
+    },
+    {
+      "id": "layers",
+      "page": "https://useanimations.com/icons/layers",
+      "json": "https://useanimations.com/icons/layers.json",
+      "svg": "https://useanimations.com/icons/layers/layers.svg",
+      "requiresFullPlayer": false
+    },
+    {
+      "id": "shuffle",
+      "page": "https://useanimations.com/icons/shuffle",
+      "json": "https://useanimations.com/icons/shuffle.json",
+      "svg": "https://useanimations.com/icons/shuffle/shuffle.svg",
+      "requiresFullPlayer": false
+    },
+    {
+      "id": "mouse-pointer",
+      "page": "https://useanimations.com/icons/mouse-pointer",
+      "json": "https://useanimations.com/icons/mouse-pointer.json",
+      "svg": "https://useanimations.com/icons/mouse-pointer/mouse-pointer.svg",
+      "requiresFullPlayer": false
+    },
+    {
+      "id": "aperture",
+      "page": "https://useanimations.com/icons/aperture",
+      "json": "https://useanimations.com/icons/aperture.json",
+      "svg": "https://useanimations.com/icons/aperture/aperture.svg",
+      "requiresFullPlayer": false
+    },
+    {
+      "id": "repeat",
+      "page": "https://useanimations.com/icons/repeat",
+      "json": "https://useanimations.com/icons/repeat.json",
+      "svg": "https://useanimations.com/icons/repeat/repeat.svg",
+      "requiresFullPlayer": false
+    },
+    {
+      "id": "monitor",
+      "page": "https://useanimations.com/icons/monitor",
+      "json": "https://useanimations.com/icons/monitor.json",
+      "svg": "https://useanimations.com/icons/monitor/monitor.svg",
+      "requiresFullPlayer": false
+    },
+    {
+      "id": "command",
+      "page": "https://useanimations.com/icons/command",
+      "json": "https://useanimations.com/icons/command.json",
+      "svg": "https://useanimations.com/icons/command/command.svg",
+      "requiresFullPlayer": false
+    },
+    {
+      "id": "trending-up",
+      "page": "https://useanimations.com/icons/trending-up",
+      "json": "https://useanimations.com/icons/trending-up.json",
+      "svg": "https://useanimations.com/icons/trending-up/trending-up.svg",
+      "requiresFullPlayer": false
+    },
+    {
+      "id": "folder",
+      "page": "https://useanimations.com/icons/folder",
+      "json": "https://useanimations.com/icons/folder.json",
+      "svg": "https://useanimations.com/icons/folder/folder.svg",
+      "requiresFullPlayer": false
+    },
+    {
+      "id": "edit",
+      "page": "https://useanimations.com/icons/edit",
+      "json": "https://useanimations.com/icons/edit.json",
+      "svg": "https://useanimations.com/icons/edit/edit-2.svg",
+      "requiresFullPlayer": false
+    },
+    {
+      "id": "list",
+      "page": "https://useanimations.com/icons/list",
+      "json": "https://useanimations.com/icons/list.json",
+      "svg": "https://useanimations.com/icons/list/list.svg",
+      "requiresFullPlayer": false
+    },
+    {
+      "id": "cast",
+      "page": "https://useanimations.com/icons/cast",
+      "json": "https://useanimations.com/icons/cast.json",
+      "svg": "https://useanimations.com/icons/cast/cast.svg",
+      "requiresFullPlayer": false
+    }
+  ]
+}
