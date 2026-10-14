@@ -22,33 +22,23 @@
  document.querySelectorAll('[data-flow]').forEach(flow=>{
   const steps=[...flow.querySelectorAll(':scope > article')];if(!steps.length)return;
   const controls=document.createElement('div');controls.className='flow-controls';
-  const toggle=document.createElement('button'),restart=document.createElement('button'),status=document.createElement('p');
-  toggle.type=restart.type='button';restart.textContent='↻';restart.title='Chạy lại từ bước đầu';restart.setAttribute('aria-label',restart.title);
-  status.className='flow-status';status.setAttribute('role','status');
-  controls.append(toggle,restart,status);flow.after(controls);
-  let index=0,timer=null,running=false,started=false,visible=false;
+  const status=document.createElement('p');status.className='flow-status';controls.append(status);flow.after(controls);
+  let index=0,timer=null;
   const render=()=>{
-   steps.forEach((step,i)=>{step.classList.toggle('flow-current',i===index);step.classList.toggle('flow-done',i<index);if(i===index)step.setAttribute('aria-current','step');else step.removeAttribute('aria-current')});
+   steps.forEach((step,i)=>{step.classList.toggle('flow-current',!reduced.matches&&i===index);step.classList.toggle('flow-done',!reduced.matches&&i<index);if(!reduced.matches&&i===index)step.setAttribute('aria-current','step');else step.removeAttribute('aria-current')});
    flow.dataset.step=String(index+1);
-   toggle.textContent=running?'Ⅱ':'▶';toggle.title=running?'Dừng minh họa':'Tiếp tục minh họa';toggle.setAttribute('aria-label',toggle.title);toggle.disabled=reduced.matches;
-   status.textContent='Bước '+(index+1)+' / '+steps.length+': '+steps[index].querySelector('h3').textContent+(reduced.matches?' · Giảm chuyển động':running?' · Đang chạy':index===steps.length-1?' · Đã hoàn tất':' · Đã dừng');
+   status.textContent=reduced.matches?'Repo → Commit → Xuất bản → Kiểm chứng':'Bước '+(index+1)+' / '+steps.length+': '+steps[index].querySelector('h3').textContent;
   };
-  const pause=()=>{clearTimeout(timer);timer=null;running=false;render()};
+  const pause=()=>{clearTimeout(timer);timer=null};
   const advance=()=>{
-   clearTimeout(timer);if(!running)return;
-   timer=setTimeout(()=>{if(document.hidden||!visible){pause();return}if(index<steps.length-1){index++;render();advance()}else pause()},1800);
+   clearTimeout(timer);if(reduced.matches||document.hidden)return;
+   timer=setTimeout(()=>{index=(index+1)%steps.length;render();advance()},2000);
   };
-  const start=()=>{if(reduced.matches||!visible||document.hidden)return;started=true;running=true;render();advance()};
-  toggle.onclick=()=>{if(running)pause();else{if(index===steps.length-1)index=0;start()}};
-  restart.onclick=()=>{pause();index=0;render();start()};
-  render();
-  const observer='IntersectionObserver' in window?new IntersectionObserver(entries=>{
-   visible=entries.some(entry=>entry.isIntersecting);if(!visible)pause();else if(!started)start();
-  },{threshold:.15}):null;
-  if(observer)observer.observe(flow);else visible=true;
-  const visibility=()=>{if(document.hidden)pause()};
-  const preference=()=>{if(reduced.matches)pause();else render()};
+  const start=()=>{render();advance()};start();
+  const visibility=()=>{if(document.hidden)pause();else start()};
+  const preference=()=>{pause();start()};
   document.addEventListener('visibilitychange',visibility);reduced.addEventListener?.('change',preference);
-  window.addEventListener('pagehide',()=>{pause();observer?.disconnect();document.removeEventListener('visibilitychange',visibility);reduced.removeEventListener?.('change',preference)},{once:true});
+  window.addEventListener('pagehide',()=>{pause();document.removeEventListener('visibilitychange',visibility);reduced.removeEventListener?.('change',preference)});
+  window.addEventListener('pageshow',event=>{if(event.persisted){document.addEventListener('visibilitychange',visibility);reduced.addEventListener?.('change',preference);start()}});
  });
 })();

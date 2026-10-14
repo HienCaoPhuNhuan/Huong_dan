@@ -1,0 +1,24 @@
+body{min-width:1100px}
+.kinetic-hero{position:relative;height:calc(100vh - 170px);min-height:540px;max-height:900px;overflow:hidden;background:#113d38;color:white;isolation:isolate;border-bottom:4px solid #d67691}
+.kinetic-photo,.kinetic-video{position:absolute;inset:-18px;width:calc(100% + 36px);height:calc(100% + 36px);object-fit:cover;object-position:center;z-index:-4;will-change:transform;animation:kinetic-image-float 8s ease-in-out infinite}
+.kinetic-video{opacity:0;transition:opacity .7s}.kinetic-hero.video-ready .kinetic-video{opacity:1}
+.kinetic-shade{position:absolute;inset:0;background:#082e2b99;box-shadow:inset 0 0 100px #071f2680;z-index:-3;pointer-events:none}
+.kinetic-word{position:absolute;left:0;top:44%;white-space:nowrap;font-size:112px;line-height:1.4;font-weight:700;color:#ffffff0c;animation:kinetic-marquee 38s linear infinite;pointer-events:none;z-index:-2}
+.kinetic-scan{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:-1}.kinetic-scan::after{content:'';position:absolute;left:0;width:100%;height:2px;background:#e6f3d080;box-shadow:0 0 12px #a7e6d6;animation:kinetic-scan 6s linear infinite}
+.kinetic-particles{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.kinetic-copy{position:relative;z-index:1;width:820px;max-width:calc(100% - 160px);margin:auto;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding-bottom:42px;animation:kinetic-float 7s ease-in-out infinite}
+.kinetic-copy h1{color:white;font-size:48px;line-height:1.3;margin:18px 0 24px;border:0;max-width:760px;animation:title-arrival .7s ease-out both;text-shadow:0 4px 20px #05242080}
+.kinetic-copy>p:not(.kinetic-label){font-size:20px;line-height:1.8;color:#eff9f4;max-width:690px}.kinetic-label{font-size:12px;font-weight:700;color:#e5ba9b;padding-left:14px;border-left:3px solid #e5ba9b}
+.kinetic-enter{display:flex;align-items:center;gap:28px;color:white;font-size:15px;font-weight:700;text-decoration:none;padding:14px 0;border-bottom:1px solid #ffffff80;margin-top:16px;transition:color .2s}.kinetic-enter:hover{color:#f6b8cd}.kinetic-enter span{font-size:24px;animation:kinetic-nudge 2.5s ease-in-out infinite}
+.kinetic-footer{position:absolute;bottom:22px;left:40px;right:40px;display:flex;justify-content:space-between;color:#c4dcd5;font:11px/1.6 GuideUI,system-ui;pointer-events:none}
+.kinetic-hero.no-marquee .kinetic-word,.kinetic-hero.no-scan .kinetic-scan,.kinetic-hero.no-particles .kinetic-particles{display:none}.kinetic-hero.no-float .kinetic-copy,.kinetic-hero.no-float .kinetic-photo{animation:none}.kinetic-hero.no-glass .kinetic-shade{backdrop-filter:none}
+.kinetic-hero.has-glass .kinetic-label{backdrop-filter:blur(7px);background:#103b3870;padding:9px 14px}
+.kinetic-hero[data-paused=true] *,.kinetic-hero[data-paused=true] *::after{animation-play-state:paused!important}
+.layer-lab{display:grid;grid-template-columns:240px minmax(0,1fr);gap:26px;align-items:start}.layer-settings{border-right:1px solid #d6e2dc;padding-right:22px}.layer-settings .checkbox{margin:12px 0}.layer-preview{height:430px;min-height:430px;border:1px solid #b9ccc0;border-radius:6px}.layer-preview .kinetic-copy{width:100%;max-width:100%;padding:36px;animation-name:kinetic-float}.layer-preview .kinetic-copy h3{font-size:27px;line-height:1.5;color:white;margin:16px 0}.layer-preview .kinetic-copy>p{font-size:16px}.layer-preview .kinetic-word{font-size:65px}.layer-preview .kinetic-footer{left:26px;right:26px;font-size:10px}.layer-preview .kinetic-shade{background:#082e2bc9}.layer-preview.has-glass .kinetic-copy{backdrop-filter:blur(6px);background:#143b3b50}
+.library-title{font-size:28px;margin-bottom:12px}
+@keyframes kinetic-marquee{to{transform:translateX(-50%)}}
+@keyframes kinetic-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes kinetic-image-float{0%,100%{translate:0 0}50%{translate:0 -7px}}
+@keyframes kinetic-scan{0%{top:0;opacity:0}8%,90%{opacity:.7}100%{top:100%;opacity:0}}
+@keyframes kinetic-nudge{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+@media(prefers-reduced-motion:reduce){.kinetic-hero *,.kinetic-hero *::after{animation:none!important;transition:none!important}.kinetic-video,.kinetic-particles,.kinetic-scan{display:none}.kinetic-photo{transform:none!important}}

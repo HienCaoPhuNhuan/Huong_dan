@@ -1,25 +1,25 @@
 <!doctype html>
-<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Thử hiệu ứng ảnh, video và âm thanh</title><link rel="stylesheet" href="styles.css?v=20261014-motion"><link rel="stylesheet" href="media-effects.css?v=20261013-1"></head><body>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Thử hiệu ứng ảnh, video và âm thanh</title><link rel="stylesheet" href="styles.css?v=20261014-kinetic"><link rel="stylesheet" href="media-effects.css?v=20261014-kinetic"><link rel="stylesheet" href="kinetic.css?v=20261014-kinetic"></head><body>
 <header><a class="brand" href="index.html#design">← THƯ VIỆN</a><span>2 · Effect và tổ hợp media</span></header>
 <main class="media-lab-main"><h1>Hiệu ứng ảnh, video và âm thanh</h1><p>Chọn media và hiệu ứng, bấm thử, rồi đối chiếu kết quả với câu yêu cầu. Mẫu dùng ảnh trường THPT Phú Nhuận, video pn5 và trích đoạn nhạc được giáo viên cung cấp.</p>
 <p class="rule"><strong>Effect là cách xử lý hình thức hoặc âm thanh:</strong> cắt ảnh, lớp phủ, làm mờ, màu, phóng ảnh hoặc thay đổi âm lượng. Khi hình thức thay đổi theo thời gian, đó còn là animation. Bài này tập trung vào media và tổ hợp chữ trên media; <a href="animation.html">animation của các đối tượng</a> và <a href="transition.html">chuyển giữa các section</a> là hai bài riêng.</p>
 <div class="media-lab-controls">
 <div><label for="media-kind">Loại media</label><select id="media-kind"><option value="image">Ảnh</option><option value="video">Video</option><option value="audio">Âm thanh</option><option value="combo">Ảnh/video + nhạc</option></select></div>
 <div><label for="media-effect">Hiệu ứng / hành vi</label><select id="media-effect"></select></div>
-<div><label for="media-trigger">Kích hoạt hình ảnh</label><select id="media-trigger"><option value="click">Bấm để chạy</option><option value="hover">Rê chuột / focus vào vùng mẫu</option><option value="scroll">Khi cuộn tới vùng mẫu (một lần)</option></select></div>
+<div><label for="media-trigger">Kích hoạt hình ảnh</label><select id="media-trigger"><option value="click">Bấm để chạy</option><option value="hover">Rê chuột / focus vào vùng mẫu</option><option value="scroll" selected="">Khi cuộn tới vùng mẫu (một lần)</option></select></div>
 <div><label for="effect-duration">Thời lượng hiệu ứng: <output id="effect-duration-value">3</output> giây</label><input id="effect-duration" type="range" min="1" max="8" step="0.5" value="3"></div>
 <div><label for="frame-fit">Cách lấp khung ảnh/video</label><select id="frame-fit"><option value="cover">Cover: lấp khung, có thể cắt mép</option><option value="contain">Contain: giữ toàn bộ</option></select></div>
 <div><label for="focus-position">Điểm cần giữ trong ảnh/video</label><select id="focus-position"><option value="center">Giữa khung</option><option value="left">Bên trái</option><option value="right">Bên phải</option></select></div>
 <div><label for="overlay-level">Lớp phủ tối: <output id="overlay-value">40</output>%</label><input id="overlay-level" type="range" min="0" max="75" step="5" value="40"></div>
 <div><label for="music-volume">Âm lượng nhạc: <output id="volume-value">20</output>%</label><input id="music-volume" type="range" min="0" max="60" step="5" value="20"></div>
-<label class="checkbox"><input id="show-caption" type="checkbox" checked>Chữ trên nền ảnh/video</label><label class="checkbox"><input id="repeat-media" type="checkbox">Lặp video / nhạc</label>
+<label class="checkbox"><input id="show-caption" type="checkbox" checked="">Chữ trên nền ảnh/video</label><label class="checkbox"><input id="repeat-media" type="checkbox">Lặp video / nhạc</label>
 </div>
 <div class="pill-row media-actions"><button class="primary" id="effect-play">▶ Chạy / nghe thử</button><button id="effect-stop">■ Dừng</button><button id="effect-reset" title="Dừng và đưa media về đầu" aria-label="Đưa media về đầu">↺</button><button id="effect-fullscreen" title="Toàn màn hình vùng mẫu" aria-label="Toàn màn hình">⛶</button></div>
 <p id="effect-status" class="feedback" aria-live="polite">Chưa chạy. Nhạc chỉ phát khi bạn bấm.</p>
 <section id="media-stage" class="media-effects-stage" tabindex="0" aria-label="Vùng thử hiệu ứng media">
-<div id="visual-layer" class="visual-layer"><img id="effect-image" src="assets/media-effects/phu-nhuan.webp" alt="Mặt tiền trường THPT Phú Nhuận"><video id="effect-video" preload="metadata" playsinline muted poster="assets/media-effects/video-poster.jpg" hidden><source src="assets/media-effects/phu-nhuan.mp4" type="video/mp4"></video></div>
+<div id="visual-layer" class="visual-layer"><img id="effect-image" src="assets/media-effects/phu-nhuan.webp" alt="Mặt tiền trường THPT Phú Nhuận"><video id="effect-video" preload="metadata" playsinline="" muted="" poster="assets/media-effects/video-poster.jpg" hidden=""><source src="assets/media-effects/phu-nhuan.mp4" type="video/mp4"></video></div>
 <div class="media-shade" id="media-shade"></div><div class="stage-copy" id="stage-copy"><span>THPT PHÚ NHUẬN</span><h2>Một hình ảnh, nhiều cách kể chuyện</h2><p id="stage-line">Đối chiếu hiệu ứng với thông điệp bạn muốn trình bày.</p></div>
-<div id="audio-stage" class="audio-stage" hidden><h2>Âm thanh là một lớp nghe, không phải ảnh nền</h2><p>Nghe thay đổi âm lượng/tốc độ trong mẫu. Thanh bên dưới hiển thị âm lượng phát đã đặt, không phải sóng âm đo từ nhạc.</p><div class="volume-track"><div id="live-volume-bar"></div></div><p id="live-volume">Âm lượng phát: 20%</p></div>
+<div id="audio-stage" class="audio-stage" hidden=""><h2>Âm thanh là một lớp nghe, không phải ảnh nền</h2><p>Nghe thay đổi âm lượng/tốc độ trong mẫu. Thanh bên dưới hiển thị âm lượng phát đã đặt, không phải sóng âm đo từ nhạc.</p><div class="volume-track"><div id="live-volume-bar"></div></div><p id="live-volume">Âm lượng phát: 20%</p></div>
 </section>
 <audio id="effect-audio" preload="metadata" src="assets/media-effects/infraction-action-30s.mp3"></audio>
 <div class="playback-info"><span id="video-clock">Video: chưa phát</span><span id="audio-clock">Nhạc: chưa phát</span><span id="motion-note"></span></div>
@@ -42,4 +42,5 @@ assets/media-effects/video-poster.jpg
 assets/media-effects/infraction-action-30s.mp3</div>
 <p>Tên tệp có “No Copyright” không tự xác nhận giấy phép. Trước khi dùng trong sản phẩm của nhóm, kiểm tra điều kiện nguồn, yêu cầu ghi công và quyền công bố; không đưa thông tin riêng tư lên repo công khai. Các tệp này là mẫu của tài liệu, không phải tài nguyên tự có trong repo học sinh.</p>
 <p class="source-note">Nguồn kỹ thuật: <a href="https://developer.mozilla.org/en-US/docs/Web/Media/Guides/Autoplay">Tự phát media</a> · <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/play">Phát và xử lý lỗi</a> · <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit">Contain/cover</a>.</p>
-</main><footer><a href="tai-nguyen-bai.html#media">Về hướng dẫn thuyết trình web</a></footer><script src="media-effects.js?v=20261013-2"></script></body></html>
+</main><footer><a href="tai-nguyen-bai.html#media">Về hướng dẫn thuyết trình web</a></footer><script src="media-effects.js?v=20261014-kinetic"></script>
+</body></html>
