@@ -20,7 +20,8 @@
  'lam-chu-cong-nghe.html':['monitor',['Thiết bị','CPU · GPU · RAM'],['Thiết kế','Độ nặng phù hợp'],['Chạy thử','Mượt và dễ đọc']],
  'tham-khao-codepen.html':['command',['Xem mẫu','Quan sát hành vi'],['Nhận diện','Tệp · thư viện · nguồn'],['Điều chỉnh','Theo bài của bạn']],
  'cong-nghe-do-hoa-web.html':['file-text',['Tài nguyên','SVG · Lottie · model'],['Bộ phát / renderer','Chuyển dữ liệu thành hình'],['Hành vi','Trigger và vòng đời']],
- 'cong-nghe-minh-hoa.html':['layers',['Thư viện thật','Vue · GSAP · Three.js'],['Tài nguyên','Online hoặc trong repo'],['Kết quả thật','Quan sát và kiểm chứng']]
+ 'cong-nghe-minh-hoa.html':['layers',['Thư viện thật','Vue · GSAP · Three.js'],['Tài nguyên','Online hoặc trong repo'],['Kết quả thật','Quan sát và kiểm chứng']],
+ 'ke-chuyen-thi-giac.html':['pen-tool',['Phong cách','Màu · chữ · hình'],['Câu chuyện','Dữ liệu · sơ đồ · nhịp'],['Lựa chọn','Công nghệ vừa đủ']]
  };
  const data=lessons[id];if(!data)return;document.body.classList.add('lesson-decorated');main.style.setProperty('--lesson-icon',`url('assets/icons/${data[0]}.svg')`);main.style.setProperty('--lesson-accent',/animation|transition|trigger|hieu-ung|bo-cuc|interaction|thanh-phan|typography|nguyen-tac|danh-muc/.test(id)?'#ba365c':'#087957');
  const band=document.createElement('div');band.className='lesson-banner';band.setAttribute('aria-label','Các ý chính của bài');

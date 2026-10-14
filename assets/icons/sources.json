@@ -2,7 +2,7 @@
   "library": "useAnimations",
   "license": "MIT",
   "catalog": "https://useanimations.com/icons.json",
-  "downloaded": "2026-10-14",
+  "downloaded": "2026-10-15",
   "icons": [
     {
       "id": "user",
@@ -191,6 +191,13 @@
       "page": "https://useanimations.com/icons/server",
       "json": "https://useanimations.com/icons/server.json",
       "svg": "https://useanimations.com/icons/server/server.svg",
+      "requiresFullPlayer": false
+    },
+    {
+      "id": "activity",
+      "page": "https://useanimations.com/icons/activity",
+      "json": "https://useanimations.com/icons/activity.json",
+      "svg": "https://useanimations.com/icons/activity/activity.svg",
       "requiresFullPlayer": false
     }
   ]

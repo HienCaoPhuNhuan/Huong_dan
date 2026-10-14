@@ -1,0 +1,8 @@
+{
+  "name": "huong-dan-guide-qa",
+  "private": true,
+  "version": "1.0.0",
+  "packageManager": "pnpm@11.25.0",
+  "scripts": {"test": "node tools/check-site.cjs && node tools/check-visual-story.cjs", "test:browser": "node tools/check-browser.cjs"},
+  "devDependencies": {"jsdom": "30.1.2", "playwright": "1.62.1"}
+}
