@@ -9,5 +9,4 @@
   state:'Mô tả trạng thái và điều kiện chuyển trước: chờ → trả lời → đúng/sai. Có thể dùng CSS/JavaScript cho mẫu đơn giản hoặc Rive với tài nguyên và runtime phù hợp cho hoạt hình phức tạp; không tự có nhân vật từ tệp rỗng.'
  };
  const goal=document.getElementById('technology-goal'),result=document.getElementById('technology-advice');const update=()=>result.textContent=advice[goal.value];goal.addEventListener('change',update);update();
- document.getElementById('check-terms').addEventListener('click',()=>{const answer=document.querySelector('input[name="term-answer"]:checked');document.getElementById('terms-feedback').textContent=!answer?'Hãy chọn một câu trả lời.':answer.value==='b'?'Đúng: tài nguyên, bộ phát và trigger là các vai trò khác nhau; hình tĩnh là phương án dự phòng.':'Chưa đúng. JSON không tự phát như ảnh; Lottie cũng không bắt buộc React hay WebGL. Xem lại ví dụ icon trang chủ.'});
 })();

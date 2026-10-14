@@ -18,4 +18,8 @@ assert.ok(docs.get('index.html').querySelector('[data-kinetic]'));
 assert.ok(!fs.existsSync(path.join(root,'web-thuyet-trinh.html')));
 assert.equal(docs.get('ke-chuyen-thi-giac.html').querySelectorAll('.lesson-content>section').length,8);
 assert.equal(docs.get('yeu-cau-chatgpt.html').querySelectorAll('#palette option').length,6);
+assert.ok(!docs.get('cong-nghe-do-hoa-web.html').getElementById('check-terms'),'self-test removed');
+assert.ok(!docs.get('cong-nghe-do-hoa-web.html').querySelector('a[href="#check"]'));
+assert.ok(docs.get('ke-chuyen-thi-giac.html').getElementById('rive-canvas'));
+for(const f of ['assets/vendor/rive-canvas-2.44.2.js','assets/vendor/rive-canvas-2.44.2.wasm','assets/rive/switch-example.riv','assets/rive/LICENSE'])assert.ok(fs.statSync(path.join(root,f)).size>1000);
 console.log('PASS: '+files.length+' HTML files, '+count+' local links/resources; cover and three home groups preserved.');

@@ -44,7 +44,7 @@ Kết nối GitHub/Authorize không tự bảo đảm một cuộc trò chuyện
 | 2 | `hieu-ung-media.html`, `hieu-ung-nhieu-lop.html` | Hiệu ứng media và phối lớp |
 | 2 | `animation.html`, `transition.html`, `interaction.html` | Nhịp, chuyển cảnh và thao tác |
 | 2 | `danh-muc-hieu-ung.html`, `trigger.html` | 22 hiệu ứng, 32 nhóm trigger và 13 chế độ thử |
-| 2 | `ke-chuyen-thi-giac.html` | Theme, trình chiếu, scrollytelling, ECharts, sơ đồ, View Transition, Swiper, lý thuyết Rive |
+| 2 | `ke-chuyen-thi-giac.html` | Theme, trình chiếu, scrollytelling, ECharts, sơ đồ, View Transition, Swiper và Rive chạy thật |
 | Demo | `minh-hoa-trinh-chieu.html` | Demo Reveal.js thật, nhúng iframe và mở riêng; không phải bài hướng dẫn độc lập |
 | 3 | `tai-nguyen-bai.html` | Media, đường dẫn và lưu tài nguyên |
 | 3 | `yeu-cau-chatgpt.html` | Bộ tạo prompt, số section tùy chọn, sáu lựa chọn màu |
@@ -82,7 +82,6 @@ Có 20 bài hướng dẫn, một trang chủ và một trang demo trình chiế
 
 Chưa triển khai và không được báo là đã có:
 
-- Demo Rive trực tiếp: hiện chỉ có lý thuyết, link tài liệu, yêu cầu `.riv`/runtime/input/giấy phép.
 - Mô hình 3D để xoay quan sát; shader đầu trang công nghệ là nền 2D tính màu bằng GPU, không phải mô phỏng chất lỏng.
 - Speaker view/đồng hồ/mục lục/ xuất PDF trong demo trình chiếu: có hướng dẫn khái niệm, chưa xây thành bộ công cụ hoàn chỉnh.
 - Cache offline/service worker: lưu asset trong repo không bảo đảm lần đầu mở khi mất mạng.
@@ -103,8 +102,10 @@ Lần kiểm tra trước: Windows báo bật animation, Chrome vẫn trả về
 | Reveal.js | 6.0.2 | Trình chiếu; `REVEAL-LICENSE` (MIT) |
 | Apache ECharts | 6.1.0 | Biểu đồ; `ECHARTS-LICENSE` và `ECHARTS-NOTICE` |
 | Swiper | 14.3.0 | Băng chuyền; `SWIPER-LICENSE` (MIT) |
+| Rive Canvas | 2.44.2 | JavaScript + WASM; `RIVE-LICENSE` (MIT) |
 
 - Icon: `assets/icons/`, nguồn/giấy phép trong `sources.json`, `LICENSE`; dùng useAnimations.
+- Rive: `assets/rive/switch-example.riv` từ repo chính thức rive-app/rive-wasm; nguồn, commit và giấy phép trong `sources.json`, `LICENSE`. State machine `Main State Machine`, input `Click` (Trigger). Poster chụp từ canvas thật, không phải asset hoạt hình khác.
 - Media trường: `assets/media-effects/`; ảnh, video ngắn, poster, audio đã có. Không đổi ảnh cắt khác nhau thành tuyên bố về những địa điểm khác.
 - Font: `assets/fonts/`; có tiếng Việt và giấy phép đi kèm.
 - Không tải runtime từ nhánh “latest” mỗi lần mở web; giữ phiên bản rõ. Khi nâng cấp, kiểm tra API/giấy phép và demo trước khi thay.
@@ -155,4 +156,13 @@ Nếu có quyền ghi: commit những tệp đúng phạm vi, push `main`, kiể
 
 ## Việc nên làm ở phiên tiếp theo
 
-Chỉ thực hiện khi giáo viên yêu cầu: bổ sung demo Rive có tài nguyên hợp lệ; xây mẫu bài thuyết trình hoàn chỉnh theo chủ đề học sinh; thêm chế độ ghi chú/PDF nếu cần. Không thêm hàng loạt framework hoặc thay bìa chỉ để tạo sự mới lạ. Sau mỗi phiên ghi lại việc đã làm, việc chưa làm, cách kiểm tra và commit thật; README không tự mang ký ức cuộc trò chuyện sang tài khoản khác.
+### Điều chỉnh theo yêu cầu mới nhất
+
+- Đã bỏ mục “Tự kiểm tra hiểu biết” khỏi bài công nghệ, cả link mục lục và handler chấm đáp án. Không tự thêm lại quiz vào tài liệu hướng dẫn.
+- Đã bổ sung Rive chạy thật trong bài kể chuyện thị giác: công tắc chuyển ngọn hải đăng ngày/đêm, tự gửi trigger mỗi 4,5 giây, có thao tác chủ động. Tên trạng thái lấy từ event Rive, không mô phỏng bằng CSS.
+- Mô tả rõ hành động → input → phản hồi; phân biệt Boolean / Number / Trigger, và ý tưởng ứng dụng với tính năng thật của mẫu.
+- Runtime JS/WASM, tệp .riv, giấy phép và ảnh tĩnh dự phòng lưu trong repo. Tải runtime khi vùng demo được nhìn thấy. Ngoài vùng xem/tab ẩn/giảm chuyển động thì nghỉ; thao tác chủ động dừng tự gửi trigger.
+- Tắt fallback WASM sang CDN của runtime; nếu WASM trong repo lỗi thì dùng poster và mô tả, không âm thầm tải runtime từ nguồn ngoài. Chrome 1280/1920 đã kiểm tra canvas có hình/đổi pixels, trigger, state event, reduced-motion và chặn WASM; tất cả đạt.
+- `tools/check-rive-browser.cjs` kiểm tra canvas có hình và đổi pixels, state event thật, trigger chủ động, dừng ngoài vùng xem, reduced-motion, lỗi WASM và bounds ở 1280/1920. Được gộp vào `pnpm test:browser`.
+
+Chỉ thực hiện khi giáo viên yêu cầu: xây mẫu bài thuyết trình hoàn chỉnh theo chủ đề học sinh; thêm mẫu Rive khác có input phù hợp và tài nguyên hợp lệ; thêm chế độ ghi chú/PDF nếu cần. Không thêm hàng loạt framework hoặc thay bìa chỉ để tạo sự mới lạ. Sau mỗi phiên ghi lại việc đã làm, việc chưa làm, cách kiểm tra và commit thật; README không tự mang ký ức cuộc trò chuyện sang tài khoản khác.

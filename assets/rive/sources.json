@@ -1,0 +1,13 @@
+{
+  "sample": "switch_event_example.riv",
+  "repository": "https://github.com/rive-app/rive-wasm",
+  "commit": "0aaaf83315f84f3505d9b758f18f577d736a9efc",
+  "path": "js/examples/_frameworks/parcel_example_canvas/switch_event_example.riv",
+  "license": "MIT; retained in assets/rive/LICENSE",
+  "runtime": "@rive-app/canvas 2.44.2",
+  "runtime_source": "https://cdn.jsdelivr.net/npm/@rive-app/canvas@2.44.2/",
+  "state_machine": "Main State Machine",
+  "input": "Click",
+  "input_type": "Trigger",
+  "downloaded": "2026-10-15"
+}
