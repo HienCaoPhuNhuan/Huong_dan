@@ -178,6 +178,13 @@
       "json": "https://useanimations.com/icons/cast.json",
       "svg": "https://useanimations.com/icons/cast/cast.svg",
       "requiresFullPlayer": false
+    },
+    {
+      "id": "file-text",
+      "page": "https://useanimations.com/icons/file-text",
+      "json": "https://useanimations.com/icons/file-text.json",
+      "svg": "https://useanimations.com/icons/file-text/file-text.svg",
+      "requiresFullPlayer": false
     }
   ]
 }
