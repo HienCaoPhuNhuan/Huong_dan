@@ -1,0 +1,23 @@
+{
+  "downloaded": "2026-10-15",
+  "libraries": [
+    {
+      "name": "Vue",
+      "version": "3.5.44",
+      "source": "https://cdn.jsdelivr.net/npm/vue@3.5.44/dist/vue.global.prod.js",
+      "license": "MIT"
+    },
+    {
+      "name": "GSAP",
+      "version": "3.15.0",
+      "source": "https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js",
+      "license": "https://gsap.com/standard-license/"
+    },
+    {
+      "name": "Three.js",
+      "version": "0.186.1",
+      "source": "https://cdn.jsdelivr.net/npm/three@0.186.1/build/three.module.js",
+      "license": "MIT"
+    }
+  ]
+}

@@ -185,6 +185,13 @@
       "json": "https://useanimations.com/icons/file-text.json",
       "svg": "https://useanimations.com/icons/file-text/file-text.svg",
       "requiresFullPlayer": false
+    },
+    {
+      "id": "server",
+      "page": "https://useanimations.com/icons/server",
+      "json": "https://useanimations.com/icons/server.json",
+      "svg": "https://useanimations.com/icons/server/server.svg",
+      "requiresFullPlayer": false
     }
   ]
 }
