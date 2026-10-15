@@ -8,6 +8,16 @@ Thư viện hướng dẫn thiết kế bài thuyết trình bằng web dành ch
 
 ## Dành cho ChatGPT tiếp tục công việc
 
+### Trải nghiệm đọc cập nhật 2026-10-15
+
+- `reading-experience.css` và `reading-experience.js` dùng chung cho trang chủ và 21 bài. Giữ nguyên DOM bìa trang chủ; trang minh họa Reveal trong iframe không dùng bộ đọc này.
+- Đoạn văn dài căn đều, dòng cuối căn trái; tiêu đề, bảng, nút và vùng minh họa giữ cách căn riêng. Khối yêu cầu thông thường không giữ xuống dòng do định dạng mã nguồn; textarea/pre vẫn giữ nội dung có cấu trúc.
+- Bỏ sidebar khi bộ đọc khởi tạo thành công; thay bằng thanh điều hướng phần hiện tại, mũi tên trước/sau và nút mục lục mở hộp thoại, đóng bằng Escape. Không có JavaScript vẫn còn mục lục cũ làm dự phòng.
+- Cuộn tự do với CSS scroll-snap proximity ở tiêu đề nội dung: chỉ căn nhẹ gần đầu phần, không ép một nấc chuột thành một màn hình, không khóa bánh xe và không ép section dài vào chiều cao cố định. Các minh họa có vùng cuộn riêng vẫn hoạt động.
+- Liên kết sang bài khác dùng hai lớp màu quét chéo rồi mở trang mới; liên kết cùng trang, tab mới, tệp tải xuống và trang ngoài không bị chặn. Reduced motion bỏ chuyển cảnh và căn cuộn tự động. Không thay hiệu ứng View Transition bên trong bài kể chuyện.
+- Kiểm tra bổ sung: `node tools/check-reading-browser.cjs`; kiểm tra đầy đủ bằng hai lệnh test trong package.json. Ảnh kiểm tra nằm trong `qa-output/`, không xuất bản lên repo.
+- Icon điều hướng lấy từ Lucide (ISC), commit `d672fc43dbf60962d9d829e35bc3b3e5ed89a178`: https://github.com/lucide-icons/lucide/tree/d672fc43dbf60962d9d829e35bc3b3e5ed89a178/icons ; bản quyền giữ tại `assets/reader-icons/LICENSE`.
+
 README này là tài liệu bàn giao cho giáo viên và AI, không phải bài học cho học sinh. Mọi hướng dẫn học sinh cần đọc phải có trên các trang HTML, không yêu cầu học sinh vào repo đọc README.
 
 Đây là trạng thái và quyết định của dự án, không phải toàn bộ lịch sử cuộc trò chuyện. Khi bắt đầu phiên mới, đọc README, kiểm tra mã hiện tại và commit mới nhất trước khi sửa. Cập nhật phần trạng thái/bàn giao sau mỗi lượt thay đổi đáng kể.

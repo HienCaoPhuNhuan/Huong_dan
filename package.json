@@ -3,6 +3,6 @@
   "private": true,
   "version": "1.0.0",
   "packageManager": "pnpm@11.25.0",
-  "scripts": {"test": "node tools/check-site.cjs && node tools/check-visual-story.cjs && node tools/check-repo-setup.cjs && node tools/check-curriculum.cjs", "test:browser": "node tools/check-browser.cjs && node tools/check-rive-browser.cjs && node tools/check-repo-setup-browser.cjs && node tools/check-curriculum-browser.cjs"},
+  "scripts": {"test": "node tools/check-site.cjs && node tools/check-visual-story.cjs && node tools/check-repo-setup.cjs && node tools/check-curriculum.cjs", "test:browser": "node tools/check-browser.cjs && node tools/check-rive-browser.cjs && node tools/check-repo-setup-browser.cjs && node tools/check-curriculum-browser.cjs && node tools/check-reading-browser.cjs"},
   "devDependencies": {"jsdom": "30.1.2", "playwright": "1.62.1"}
 }

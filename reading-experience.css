@@ -1,0 +1,28 @@
+/* Shared reading layout; demonstrations retain their own alignment and scrolling. */
+html.reader-page{scroll-snap-type:y proximity;scroll-padding-top:88px}
+.reader-page .lesson-layout{display:block}
+.reader-page .lesson-nav{display:none}
+.reader-page main p{text-align:justify;text-align-last:left;text-justify:inter-word}
+.reader-page main .lead{max-width:none}
+.reader-page .request:not(textarea):not(pre){white-space:normal}
+.reader-page :is(figcaption,button,label,th,td,.preview,.lesson-banner,.workshop-stage,.shader-scene) p{text-align:left}
+.reader-page .reading-anchor{scroll-snap-align:start;scroll-snap-stop:normal;scroll-margin-top:0}
+.reader-toolbar{position:sticky;top:0;z-index:80;display:flex;align-items:center;gap:14px;min-height:64px;padding:8px 28px;background:#ffffffed;border-bottom:1px solid #c7d8cf;box-shadow:0 4px 18px #17392c0d;backdrop-filter:blur(12px)}
+.reader-toolbar .reader-position{font-size:12px;color:#52625b;white-space:nowrap}
+.reader-title{flex:1;min-width:0;font-size:14px;font-weight:650;line-height:1.5}
+.reader-toolbar button,.reader-dialog button{display:grid;place-items:center;width:40px;height:40px;padding:9px;flex:none;border:1px solid #c7d8cf;background:#fff;border-radius:4px}
+.reader-toolbar button:hover,.reader-dialog button:hover{background:#e5f1ea;border-color:#087957}
+.reader-toolbar button:disabled{opacity:.35;cursor:default}
+.reader-toolbar img,.reader-dialog button img{width:20px;height:20px}
+.reader-dialog{width:650px;max-width:80vw;max-height:80vh;padding:24px;border:1px solid #c7d8cf;border-radius:6px;color:#172521;background:#fff;box-shadow:0 30px 90px #10291d44}
+.reader-dialog::backdrop{background:#10291d88;backdrop-filter:blur(5px)}
+.reader-dialog header{display:flex;justify-content:space-between;align-items:center;padding:0 0 14px;margin:0;background:none;border-bottom:1px solid #d6e2dc}
+.reader-dialog h2{font-size:20px;margin:0}.reader-dialog ol{padding-left:26px}.reader-dialog li{padding:4px 0}.reader-dialog a{display:block;padding:7px;line-height:1.6}.reader-dialog a[aria-current]{background:#e5f1ea;color:#075f45}
+/* Viewport-sized shutters do not transform the long document or its canvases. */
+html.route-leaving::before,html.route-leaving::after,html.route-arriving::before,html.route-arriving::after{content:'';position:fixed;inset:-25vh -30vw;z-index:2147483646;pointer-events:none;transform:translateX(-130%) skewX(-12deg);background:#087957;animation:reader-cover .48s cubic-bezier(.65,0,.25,1) both}
+html.route-leaving::after,html.route-arriving::after{background:#ba365c;z-index:2147483647;animation-delay:.07s}
+html.route-arriving::before,html.route-arriving::after{animation-name:reader-uncover;animation-duration:.65s}
+html.route-back::before,html.route-back::after{animation-direction:normal;--route-side:-1}
+@keyframes reader-cover{from{transform:translateX(calc(-130% * var(--route-side,1))) skewX(-12deg)}to{transform:translateX(0) skewX(-12deg)}}
+@keyframes reader-uncover{from{transform:translateX(0) skewX(-12deg)}to{transform:translateX(calc(130% * var(--route-side,1))) skewX(-12deg)}}
+@media(prefers-reduced-motion:reduce){html.reader-page{scroll-snap-type:none;scroll-behavior:auto}html.route-leaving::before,html.route-leaving::after,html.route-arriving::before,html.route-arriving::after{display:none;animation:none}}
