@@ -30,6 +30,10 @@ Kết nối GitHub/Authorize không tự bảo đảm một cuộc trò chuyện
 
 ## Mục tiêu và quyết định cần giữ
 
+### Liên kết theo thứ tự học
+
+Học lần lượt theo `curriculum.json`: nền tảng và tài khoản → quy tắc thiết kế, thành phần và bố cục → hiệu ứng, thư viện và đồ họa → chuẩn bị yêu cầu → hoàn thiện và triển khai. Trong nội dung bài chỉ liên kết tới bài đã học hoặc mục trong cùng bài; không tạo đường tắt từ setup sang bước triển khai hay bài phía sau. Kiến thức chưa học chỉ được giới thiệu bằng ghi chú ngắn, không gắn liên kết. Nút Tiếp ở cuối bài là đường đi duy nhất sang bài kế tiếp; nút Trước và liên kết ôn tập vẫn được giữ. Trang chủ vẫn là mục lục toàn khóa, không phải khóa truy cập. `tools/check-curriculum.cjs` kiểm tra quy tắc này để tránh tái xuất hiện liên kết nhảy trước.
+
 1. Tiếng Việt, trực quan: học sinh hiểu kết quả, thuật ngữ thiết kế, lựa chọn, prompt và kiểm chứng; không học lập trình đầy đủ.
 2. Học sinh dùng ChatGPT Free để yêu cầu AI tạo mã và, khi có công cụ phù hợp, sửa/commit GitHub. Không đưa ứng dụng Codex thành bước học sinh phải dùng.
 3. Ba nhóm trang chủ: Web là gì; Các khái niệm trong thiết kế; Làm chủ công nghệ. Mỗi bài có trang riêng, không khôi phục trang tổng hợp cũ `web-thuyet-trinh.html`.

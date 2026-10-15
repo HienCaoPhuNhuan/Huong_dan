@@ -7,6 +7,12 @@ for(const [i,lesson]of lessons.entries()){
  assert.equal(cards[i].getAttribute('href'),lesson.file);assert.equal(cards[i].closest('.topic-band').id,lesson.group);assert.equal(cards[i].querySelector('[data-icon]').dataset.icon,lesson.icon);
  const d=doc(lesson.file),actions=d.querySelectorAll('.chapter-actions');assert.equal(actions.length,1,lesson.file+' needs one route');assert.equal(d.querySelector('.lesson-goal').textContent,'Kết quả cần đạt: '+lesson.goal);const links=[...actions[0].querySelectorAll('a')];assert.equal(links.length,3);assert.equal(links[0].getAttribute('href'),i?lessons[i-1].file:'index.html#web');assert.equal(links[1].getAttribute('href'),'index.html#'+lesson.group);assert.equal(links[2].getAttribute('href'),i<lessons.length-1?lessons[i+1].file:'index.html');
  assert.ok(!read(lesson.file).includes('không cần đọc hay tạo tệp README'));assert.ok(!/href="web-la-gi.html#(?:setup|security|readme-handoff)/.test(read(lesson.file)),lesson.file+' old internal setup link');
+ for(const a of d.querySelectorAll('a[href]')){
+  const url=new URL(a.getAttribute('href'),'https://guide.local/'+lesson.file);
+  if(url.origin!=='https://guide.local')continue;
+  const target=lessons.findIndex(l=>'/'+l.file===url.pathname);
+  if(target>i)assert.ok(a===links[2]&&target===i+1,lesson.file+' skips ahead: '+a.getAttribute('href'));
+ }
 }
 const web=doc('web-la-gi.html'),setup=doc('thiet-lap-github.html');assert.ok(!web.getElementById('setup'));for(const id of ['setup','readme-handoff','security'])assert.ok(setup.getElementById(id));for(const id of ['overview','static-dynamic','origin','github'])assert.ok(web.getElementById(id));
 const redirect=read('legacy-setup-links.js');for(const [hash,expected]of [['#setup','thiet-lap-github.html?v=test#setup'],['#readme-handoff','thiet-lap-github.html?v=test#readme-handoff'],['#security','thiet-lap-github.html?v=test#security'],['#origin',null],['#%bad',null]]){let target=null;vm.runInNewContext(redirect,{location:{hash,search:'?v=test',replace:x=>{target=x}},window:{addEventListener(){}}});assert.equal(target,expected)}
