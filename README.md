@@ -158,6 +158,15 @@ Nếu có quyền ghi: commit những tệp đúng phạm vi, push `main`, kiể
 
 ### Điều chỉnh theo yêu cầu mới nhất
 
+- Phần GitHub setup là sáu bước có bảng tiến độ do học sinh tự đánh dấu, lưu sessionStorage theo tab; không xác minh tài khoản thật và không tự đổi quyền repo.
+- Bước tạo repo nhấn mạnh GitHub Free cần Public để dùng Pages, phải bật Add README. Có sơ đồ minh họa được gắn nhãn, từng thao tác 2.1–2.5 và dấu hiệu hoàn thành.
+- Repo đã lỡ Private: hướng dẫn rà soát tệp/lịch sử và bí mật trước, rồi Settings → General → Danger Zone → Change visibility → Public; không tự đổi repo của học sinh. Public không tự cấp quyền ghi cho người khác hay tự deploy.
+- Bước 6 hướng dẫn README dự án của học sinh: mẫu mục tiêu/quyết định/tài nguyên/trạng thái/việc tiếp theo; prompt cập nhật trước khi dừng; prompt mở chat mới yêu cầu đọc repo và xác nhận trạng thái.
+- Theo đính chính của giáo viên: trọng tâm README/chat mới là giảm AI bỏ sót hoặc dùng sai ngữ cảnh khi trao đổi dài, không phải đặt lại hạn mức. README lưu mục tiêu, quyết định đã duyệt, phần phải giữ, trạng thái và việc kế tiếp. Phiên mới phải đọc lại README/mã hiện tại, tóm tắt để học sinh xác nhận rồi mới sửa. Không nói đây là lỗi chỉ của Free hoặc bảo đảm AI không bao giờ quên; README không tự được đọc.
+- Cập nhật liên kết từ bài tài khoản/Memory. Giữ riêng README bàn giao repo giáo viên và README của mỗi nhóm; không yêu cầu học sinh đọc README giáo viên.
+- Tệp mới `repo-setup.css/js` chỉ nạp ở `web-la-gi.html`. Không thay bìa trang chủ, không tự bật/tắt GitHub Pages hoặc đổi tài khoản thực.
+- Kiểm tra: script cấu trúc/lifecycle và sáu bước đều đạt; Chrome 1280/1920 kiểm tra tiến độ, lưu trong tab, reset, liên kết bước, mở hướng dẫn sửa Private, README bàn giao và không tràn ngang. Không thay đổi repo/tài khoản thật trong kiểm tra. Các sơ đồ UI được ghi rõ là minh họa, không phải ảnh chụp GitHub hiện hành.
+
 - Đã bỏ mục “Tự kiểm tra hiểu biết” khỏi bài công nghệ, cả link mục lục và handler chấm đáp án. Không tự thêm lại quiz vào tài liệu hướng dẫn.
 - Đã bổ sung Rive chạy thật trong bài kể chuyện thị giác: công tắc chuyển ngọn hải đăng ngày/đêm, tự gửi trigger mỗi 4,5 giây, có thao tác chủ động. Tên trạng thái lấy từ event Rive, không mô phỏng bằng CSS.
 - Mô tả rõ hành động → input → phản hồi; phân biệt Boolean / Number / Trigger, và ý tưởng ứng dụng với tính năng thật của mẫu.

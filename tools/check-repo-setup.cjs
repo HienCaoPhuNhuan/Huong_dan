@@ -1,0 +1,11 @@
+const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict'),{JSDOM}=require('jsdom');
+const root=path.resolve(__dirname,'..'),html=fs.readFileSync(path.join(root,'web-la-gi.html'),'utf8'),script=fs.readFileSync(path.join(root,'repo-setup.js'),'utf8');
+const dom=new JSDOM(html,{url:'https://example.com/web-la-gi.html',runScripts:'outside-only'}),w=dom.window,d=w.document;
+w.eval(script);const checks=[...d.querySelectorAll('#setup-progress input')];assert.equal(checks.length,6);
+assert.equal(d.querySelector('[aria-current=step]').getAttribute('href'),'#setup-account');
+checks[0].checked=true;checks[0].dispatchEvent(new w.Event('change'));assert.equal(d.querySelector('[aria-current=step]').getAttribute('href'),'#setup-repo');assert.ok(d.getElementById('setup-progress-status').textContent.startsWith('1/6'));
+checks.forEach(c=>{c.checked=true;c.dispatchEvent(new w.Event('change'))});assert.ok(d.getElementById('setup-progress-status').textContent.startsWith('6/6'));assert.equal(d.querySelectorAll('[aria-current=step]').length,0);assert.equal(JSON.parse(w.sessionStorage.getItem('guide-repo-setup-v1')).length,6);
+d.getElementById('reset-setup-progress').click();assert.ok(checks.every(c=>!c.checked));assert.ok(d.getElementById('setup-progress-status').textContent.startsWith('0/6'));
+assert.ok(d.getElementById('setup-repo').textContent.includes('Public'));assert.ok(d.getElementById('private-repo-fix').textContent.includes('lịch sử commit'));assert.ok(d.getElementById('readme-template').value.includes('Quyết định cần giữ'));assert.ok(d.getElementById('readme-handoff').textContent.includes('tránh “quên đang làm gì”'));assert.ok(d.getElementById('new-chat-prompt').value.includes('README.md'));
+assert.ok(!d.querySelector('#setup input[type=password]'));dom.window.close();
+const denied=new JSDOM(html,{url:'https://example.com',runScripts:'outside-only'});Object.defineProperty(denied.window,'sessionStorage',{get(){throw Error('blocked')}});denied.window.eval(script);assert.ok(denied.window.document.getElementById('setup-progress-status').textContent.includes('0/6'));denied.window.close();console.log('PASS: six-step progress, session-only persistence, reset, blocked storage, Public/README recovery and accurate chat handoff.');
