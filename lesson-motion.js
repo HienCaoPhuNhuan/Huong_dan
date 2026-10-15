@@ -4,6 +4,7 @@
  const lessons={
  'tai-khoan-chatgpt.html':['user',['Bạn muốn gì?','Instructions định hướng'],['Điều gì cần nhớ?','Memory có kiểm soát'],['Kiểm chứng','Xem lại câu trả lời']],
  'web-la-gi.html':['code',['Tệp trong repo','HTML · CSS · JavaScript'],['Commit','Lưu phiên bản thay đổi'],['GitHub Pages','Xuất bản rồi mở link']],
+ 'thiet-lap-github.html':['git-branch',['Chuẩn bị','Tài khoản · repo Public'],['Kiểm chứng','Đọc tệp · commit thật'],['Bàn giao','README giữ đúng bài']],
  'thanh-phan-thiet-ke.html':['grid',['Chọn thành phần','Chữ · ảnh · chart'],['Kết hợp','Tạo một section'],['Quan sát','Đọc theo thứ tự']],
  'bo-cuc.html':['layout',['Nội dung','Chọn điều quan trọng'],['Bố cục','Đặt chữ và ảnh'],['Kết quả','Thứ tự đọc rõ ràng']],
  'chu-va-typography.html':['type',['Font','Dáng chữ có tiếng Việt'],['Nhịp đọc','Cỡ · độ đậm · giãn dòng'],['Kiểm tra','Đọc trên máy chiếu']],
@@ -31,5 +32,4 @@
  const reduced=matchMedia('(prefers-reduced-motion: reduce)');let visible=false,index=0,timer=null;const steps=[...sequence.children];
  const sync=()=>{clearTimeout(timer);timer=null;const running=visible&&!document.hidden&&!reduced.matches;band.dataset.paused=String(!running);steps.forEach((s,i)=>s.classList.toggle('sequence-active',reduced.matches||i===index));if(running)timer=setTimeout(()=>{index=(index+1)%steps.length;sync()},2600)};
  const observer=new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;sync()},{threshold:.2});observer.observe(band);document.addEventListener('visibilitychange',sync);reduced.addEventListener('change',sync);sync();window.addEventListener('pagehide',()=>{clearTimeout(timer);observer.disconnect()});window.addEventListener('pageshow',e=>{if(e.persisted)observer.observe(band)});
- const nav=document.querySelector('.lesson-nav');if(nav&&id!=='cong-nghe-minh-hoa.html'&&!nav.querySelector('a[href="cong-nghe-minh-hoa.html"]')){const link=document.createElement('a');link.href='cong-nghe-minh-hoa.html';link.textContent='Xem công nghệ chạy thật →';nav.append(link)}
 })();

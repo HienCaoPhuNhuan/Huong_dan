@@ -1,6 +1,6 @@
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict'),{JSDOM}=require('jsdom');
-const root=path.resolve(__dirname,'..'),html=fs.readFileSync(path.join(root,'web-la-gi.html'),'utf8'),script=fs.readFileSync(path.join(root,'repo-setup.js'),'utf8');
-const dom=new JSDOM(html,{url:'https://example.com/web-la-gi.html',runScripts:'outside-only'}),w=dom.window,d=w.document;
+const root=path.resolve(__dirname,'..'),html=fs.readFileSync(path.join(root,'thiet-lap-github.html'),'utf8'),script=fs.readFileSync(path.join(root,'repo-setup.js'),'utf8');
+const dom=new JSDOM(html,{url:'https://example.com/thiet-lap-github.html',runScripts:'outside-only'}),w=dom.window,d=w.document;
 w.eval(script);const checks=[...d.querySelectorAll('#setup-progress input')];assert.equal(checks.length,6);
 assert.equal(d.querySelector('[aria-current=step]').getAttribute('href'),'#setup-account');
 checks[0].checked=true;checks[0].dispatchEvent(new w.Event('change'));assert.equal(d.querySelector('[aria-current=step]').getAttribute('href'),'#setup-repo');assert.ok(d.getElementById('setup-progress-status').textContent.startsWith('1/6'));

@@ -31,13 +31,46 @@ Kết nối GitHub/Authorize không tự bảo đảm một cuộc trò chuyện
 9. Hướng dẫn GitHub gồm tạo tài khoản/repo, connect, authorize, phạm vi All repositories theo lựa chọn đã thống nhất, kiểm chứng quyền và commit thật. Nêu rủi ro của phạm vi rộng; GitHub Mobile không thay thế việc thiết lập passkey/2FA.
 10. Signup ChatGPT, Custom Instructions và Memory nằm cùng bài để cá nhân hóa mạch lạc. Memory không phải nơi lưu toàn bộ dự án hay dữ liệu bí mật.
 
+## Rà soát mạch nội dung
+
+Thứ tự học hiện tại: **hiểu web → tài khoản ChatGPT → setup GitHub → chuẩn bị nội dung/media → nguyên tắc và lựa chọn thiết kế → minh họa ứng dụng → công nghệ → chốt yêu cầu → kiểm chứng/trình bày**. Không bắt học sinh đọc lại mọi bài khi chỉ cần tra cứu một mẫu.
+
+| Nội dung | Nơi hướng dẫn chính | Những nơi khác chỉ nhắc hoặc dẫn link |
+| --- | --- | --- |
+| Web, HTML/CSS/JS, repo/commit/Pages là gì | `web-la-gi.html` | Setup và workshop không viết lại bài lý thuyết |
+| ChatGPT, Instructions, Memory | `tai-khoan-chatgpt.html` | Prompt/setup chỉ nhắc điều kiện cần |
+| Public + README, connect/authorize, quyền và bảo mật | `thiet-lap-github.html` | Bài thiết bị/prompt trỏ về bước tương ứng |
+| Giữ ngữ cảnh, bàn giao README sang chat mới | `thiet-lap-github.html#readme-handoff` | Bài tài nguyên lưu danh sách vào README nhóm; không phủ nhận việc cần README |
+| Chuẩn bị tệp, nguồn, quyền, đường dẫn và nhúng | `tai-nguyen-bai.html` | Bài thiết bị chỉ chẩn đoán tệp thiếu |
+| Phân biệt effect/animation/transition/interaction/trigger | `thanh-phan-thiet-ke.html#concepts` | Catalog là nơi chọn mẫu, không dạy lại toàn bộ định nghĩa |
+| Quy tắc đọc, phân cấp và tương phản | `nguyen-tac-trinh-bay.html` | Typography tập trung font/thông số/tệp font |
+| Animation và nhịp đối tượng | `animation.html` | Bỏ bảng trigger trùng; vẫn giữ điều khiển trigger trong mẫu để so sánh |
+| Trigger và vòng đời | `trigger.html` | Các bài khác dùng ví dụ ngắn rồi trỏ về đây |
+| Chuyển trạng thái / chuyển section | `transition.html` | Nghĩa rộng là chuyển trạng thái; bài này tập trung chuyển section, không mâu thuẫn catalog |
+| Tổ hợp ứng dụng có công nghệ thật | `ke-chuyen-thi-giac.html` | Rive/ECharts/Swiper/Reveal vẫn giữ nguyên demo |
+| Phân loại công nghệ và cách chạy | `cong-nghe-do-hoa-web.html`, `cong-nghe-minh-hoa.html` | Workshop là minh họa, không giả làm setup hay deploy thật |
+| Soạn yêu cầu đã duyệt | `yeu-cau-chatgpt.html` | Không bắt đầu lại đăng ký/cá nhân hóa ở cuối bài |
+| Quy trình hoàn thiện và tổng duyệt | `lam-chu-cong-nghe.html#workflow` | Các mô phỏng dẫn về đây; không sao chép một quy trình dài khác |
+
+Quy tắc bảo trì:
+- Mỗi bài có một mục tiêu; nhắc lại ngắn có ngữ cảnh là được, không chép lại nguyên quy trình ở nhiều trang.
+- Giữ `curriculum.json`, trang chủ và liên kết trước/sau đồng bộ. Không nối bài cuối về đăng ký như một “bài tiếp theo”.
+- Link cũ `web-la-gi.html#setup`, `#readme-handoff`, `#security` và các anchor setup con được `legacy-setup-links.js` đưa tới bài mới, giữ query/hash. Các link nội bộ đã đổi sang đích chính; không giữ hai bản setup.
+- Giữ nguyên ID và mã demo nếu chỉ chỉnh nội dung. Không xóa demo hữu ích để giảm trùng lý thuyết.
+- Bìa trang chủ giữ nguyên. Các chế độ khung hẹp trong phòng thử là lựa chọn tham khảo, không yêu cầu website học sinh phải thiết kế cho điện thoại.
+- Các tệp `tools/check-curriculum*.cjs` kiểm tra thứ tự, độc nhất trang chủ, mục tiêu, điều hướng, banner, tương thích link cũ và hiển thị PC.
+- Không tự chèn link workshop nâng cao vào mục lục của mọi bài cơ bản; liên kết tham khảo phải có ngữ cảnh, nút “Tiếp” theo lộ trình chung.
+
+Kết quả rà soát: không còn đoạn hướng dẫn dài trùng nguyên văn (kiểm tra các đoạn từ 180 ký tự, không tính nguồn); các cảnh báo ngắn theo ngữ cảnh vẫn được giữ. Kiểm tra cấu trúc, lifecycle, tiến độ và lộ trình đạt; Chrome 1280/1920 kiểm tra cả 21 bài, tìm kiếm trang chủ, banner/mục tiêu/nút trước-sau, link cũ, bounds và các demo đồ họa/Rive/setup đều đạt. Nội dung tương đương trong ví dụ ứng dụng không bị coi là một quy trình setup khác.
+
 ## Cấu trúc nội dung
 
 | Nhóm | Tệp | Nội dung |
 | --- | --- | --- |
 | Trang chủ | `index.html` | Bìa trường, tìm kiếm, theme, icon động, ba nhóm bài |
 | 1 | `tai-khoan-chatgpt.html` | Tài khoản, Instructions, Memory |
-| 1 | `web-la-gi.html` | Web tĩnh/động, HTML/CSS/JS, GitHub, authorize, bảo mật, Pages |
+| 1 | `web-la-gi.html` | Chỉ lý thuyết web, tĩnh/động, HTML/CSS/JS, repo/commit/Pages |
+| 1 | `thiet-lap-github.html` | 6 bước GitHub, Public + README, authorize, bảo mật, bàn giao chat mới |
 | 2 | `thanh-phan-thiet-ke.html` | Chữ, media, chart, form, document, navigation |
 | 2 | `bo-cuc.html` | 24 bố cục section và 10 cấu trúc bài |
 | 2 | `chu-va-typography.html`, `nguyen-tac-trinh-bay.html` | Font, thứ bậc, tương phản, mật độ |
@@ -46,21 +79,21 @@ Kết nối GitHub/Authorize không tự bảo đảm một cuộc trò chuyện
 | 2 | `danh-muc-hieu-ung.html`, `trigger.html` | 22 hiệu ứng, 32 nhóm trigger và 13 chế độ thử |
 | 2 | `ke-chuyen-thi-giac.html` | Theme, trình chiếu, scrollytelling, ECharts, sơ đồ, View Transition, Swiper và Rive chạy thật |
 | Demo | `minh-hoa-trinh-chieu.html` | Demo Reveal.js thật, nhúng iframe và mở riêng; không phải bài hướng dẫn độc lập |
-| 3 | `tai-nguyen-bai.html` | Media, đường dẫn và lưu tài nguyên |
+| 2 | `tai-nguyen-bai.html` | Media, đường dẫn và lưu tài nguyên |
 | 3 | `yeu-cau-chatgpt.html` | Bộ tạo prompt, số section tùy chọn, sáu lựa chọn màu |
 | 3 | `lam-chu-cong-nghe.html` | Thiết bị, độ mượt, workflow và trình bày |
 | 3 | `tham-khao-codepen.html` | Tham khảo mã, giấy phép, VPN được phép |
 | 3 | `cong-nghe-do-hoa-web.html` | Thuật ngữ tài nguyên/rendering/thư viện/framework |
 | 3 | `cong-nghe-minh-hoa.html` | Three.js shader, Lottie online, GSAP, Vue và mô phỏng workflow |
 
-Có 20 bài hướng dẫn, một trang chủ và một trang demo trình chiếu. Số liên kết chủ đề trên trang chủ khác số tệp HTML vì một bài có nhiều mục con.
+Có 21 bài hướng dẫn, một trang chủ và một trang demo trình chiếu (23 tệp HTML). Trang chủ có đúng một mục cho mỗi bài, không tách nhiều mục cùng dẫn đến một bài dài. `curriculum.json` là thứ tự học và phân nhóm hiện hành; kiểm tra tự động đối chiếu mục trang chủ, mục tiêu bài và nút trước/sau với dữ liệu này.
 
 ### Tệp giao diện và hành vi
 
 - `styles.css`, `course.css`, `course.js`: giao diện và hành vi chung; ảnh hưởng nhiều bài, cần kiểm tra rộng khi sửa.
 - `kinetic.css/js`: bìa động và bài phối lớp. Không thay chính sách autoplay/reduced-motion để giải quyết sự cố riêng mà chưa kiểm chứng.
 - `library.css/js`, `library-icons.js`: thư viện trang chủ, tìm kiếm, theme, icon.
-- `lesson-motion.css/js`: trang trí và banner tự chạy cho 20 bài. Thêm bài mới thì cập nhật bảng `lessons`.
+- `lesson-motion.css/js`: trang trí và banner tự chạy cho 21 bài. Thêm bài mới thì cập nhật bảng `lessons`.
 - `motion-workshop.css/js`, `workshop-shader.js`: minh họa công nghệ trước đây.
 - `visual-story.css/js`: các demo kể chuyện thị giác mới, timer theo từng vùng, dữ liệu giả định.
 - `presentation-demo.css/js`: Reveal.js trong trang riêng; CSS được cách ly với website bằng iframe.
@@ -164,7 +197,7 @@ Nếu có quyền ghi: commit những tệp đúng phạm vi, push `main`, kiể
 - Bước 6 hướng dẫn README dự án của học sinh: mẫu mục tiêu/quyết định/tài nguyên/trạng thái/việc tiếp theo; prompt cập nhật trước khi dừng; prompt mở chat mới yêu cầu đọc repo và xác nhận trạng thái.
 - Theo đính chính của giáo viên: trọng tâm README/chat mới là giảm AI bỏ sót hoặc dùng sai ngữ cảnh khi trao đổi dài, không phải đặt lại hạn mức. README lưu mục tiêu, quyết định đã duyệt, phần phải giữ, trạng thái và việc kế tiếp. Phiên mới phải đọc lại README/mã hiện tại, tóm tắt để học sinh xác nhận rồi mới sửa. Không nói đây là lỗi chỉ của Free hoặc bảo đảm AI không bao giờ quên; README không tự được đọc.
 - Cập nhật liên kết từ bài tài khoản/Memory. Giữ riêng README bàn giao repo giáo viên và README của mỗi nhóm; không yêu cầu học sinh đọc README giáo viên.
-- Tệp mới `repo-setup.css/js` chỉ nạp ở `web-la-gi.html`. Không thay bìa trang chủ, không tự bật/tắt GitHub Pages hoặc đổi tài khoản thực.
+- Tệp `repo-setup.css/js` chỉ nạp ở `thiet-lap-github.html` sau lần tách bài. Không thay bìa trang chủ, không tự bật/tắt GitHub Pages hoặc đổi tài khoản thực.
 - Kiểm tra: script cấu trúc/lifecycle và sáu bước đều đạt; Chrome 1280/1920 kiểm tra tiến độ, lưu trong tab, reset, liên kết bước, mở hướng dẫn sửa Private, README bàn giao và không tràn ngang. Không thay đổi repo/tài khoản thật trong kiểm tra. Các sơ đồ UI được ghi rõ là minh họa, không phải ảnh chụp GitHub hiện hành.
 
 - Đã bỏ mục “Tự kiểm tra hiểu biết” khỏi bài công nghệ, cả link mục lục và handler chấm đáp án. Không tự thêm lại quiz vào tài liệu hướng dẫn.
