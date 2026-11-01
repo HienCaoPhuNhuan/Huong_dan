@@ -222,3 +222,31 @@ Nếu có quyền ghi: commit những tệp đúng phạm vi, push `main`, kiể
 - `tools/check-rive-browser.cjs` kiểm tra canvas có hình và đổi pixels, state event thật, trigger chủ động, dừng ngoài vùng xem, reduced-motion, lỗi WASM và bounds ở 1280/1920. Được gộp vào `pnpm test:browser`.
 
 Chỉ thực hiện khi giáo viên yêu cầu: xây mẫu bài thuyết trình hoàn chỉnh theo chủ đề học sinh; thêm mẫu Rive khác có input phù hợp và tài nguyên hợp lệ; thêm chế độ ghi chú/PDF nếu cần. Không thêm hàng loạt framework hoặc thay bìa chỉ để tạo sự mới lạ. Sau mỗi phiên ghi lại việc đã làm, việc chưa làm, cách kiểm tra và commit thật; README không tự mang ký ức cuộc trò chuyện sang tài khoản khác.
+
+
+## Bổ sung 2026-11-02 — Kho tài nguyên thiết kế miễn phí, chỉ dùng ChatGPT và GitHub trên trình duyệt
+
+**Tiêu chí bắt buộc:** học sinh chỉ cần trình duyệt, ChatGPT (ưu tiên Free) và GitHub; không yêu cầu cài Node.js, npm, VS Code, Git, CLI, extension, Codex hay phần mềm trên máy học sinh. ChatGPT viết HTML/CSS/JavaScript và chỉ sửa/commit trực tiếp khi phiên có công cụ GitHub với quyền ghi; phải xác nhận commit thật. GitHub Pages xuất bản web tĩnh, không tự cung cấp backend. Nếu công cụ ghi không khả dụng, giải thích giới hạn, không giả vờ đã commit.
+
+**Ưu tiên công nghệ:** HTML/CSS/JS thuần, thư viện JS miễn phí chạy trên trình duyệt hoặc được đưa vào repo với phiên bản và giấy phép rõ ràng. Không bắt buộc React/Vue, npm hay build; có thể tham khảo mẫu React để chuyển thành vanilla JS nhưng phải kiểm tra tương thích, không sao chép máy móc. Học sinh chọn theo mục đích thay vì nhồi mọi hiệu ứng vào một trang.
+
+| Nguồn GitHub | Vai trò / cách khai thác trong quy trình không cài đặt | Mức ưu tiên |
+| --- | --- | --- |
+| [UI UX Pro Max](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | Tham khảo quy tắc UI/UX để ChatGPT chọn phong cách, bảng màu, bố cục; không yêu cầu học sinh cài skill CLI | Cao |
+| [Awesome DESIGN.md](https://github.com/VoltAgent/awesome-design-md) | Tham khảo đặc tả thiết kế, rút gọn thành DESIGN.md/README của chính repo học sinh | Cao |
+| [OpenDesign](https://github.com/nexu-io/open-design) | Tham khảo quy trình/prototype; không coi dịch vụ hoặc môi trường riêng là điều kiện học | Tham khảo |
+| [Taste Skill](https://github.com/Leonxlnx/taste-skill) | Nguyên tắc nâng thẩm mỹ cho AI; đọc hướng dẫn thay vì cài agent | Cao |
+| [Impeccable](https://github.com/pbakaus/impeccable) | Checklist rà soát và tinh chỉnh frontend, tính dễ đọc, tương phản | Cao |
+| [React Bits](https://github.com/DavidHDev/react-bits) | Kho mẫu hiệu ứng React; chỉ sử dụng khi dự án có React/build phù hợp, hoặc chuyển ý tưởng thành JS thuần có kiểm chứng; bản miễn phí có điều kiện MIT + Commons Clause, không mặc định mọi phần Pro miễn phí | Tham khảo có điều kiện |
+| [Emil Kowalski Skills](https://github.com/emilkowalski/skills) | Tham khảo motion, UX và kỹ năng thiết kế cho AI; không yêu cầu cài skill | Trung bình |
+| [Hallmark](https://github.com/nutlope/hallmark) | Tham khảo cách tránh giao diện AI rập khuôn; không yêu cầu công cụ agent riêng | Trung bình |
+| [Google DESIGN.md](https://github.com/google-labs-code/design.md) | Tham khảo cách mô tả hệ thống thiết kế bằng văn bản để ChatGPT làm nhất quán | Cao |
+| [GSAP Skills](https://github.com/greensock/gsap-skills) | Hướng dẫn GSAP/ScrollTrigger cho HTML/JS thuần; ưu tiên hiệu ứng cuộn và trình chiếu; GSAP và plugin miễn phí theo tài liệu dự án, kiểm tra giấy phép lúc đưa vào repo | Rất cao |
+| [Scroll World](https://github.com/oso95/scroll-world) | Tham khảo scrollytelling/3D; chỉ áp dụng nếu có phương án miễn phí, không bắt buộc API, tài khoản trả phí hay dịch vụ ngoài | Tham khảo nâng cao |
+| [Canvas UI](https://github.com/DavidHDev/canvas-ui) | Hiệu ứng canvas/WebGL, có bản vanilla; chọn từng thành phần tương thích và fallback, kiểm tra license MIT + Commons Clause | Tham khảo có điều kiện |
+
+**Quy trình cho ChatGPT:** (1) đọc README và cấu trúc repo, (2) đề xuất 2–3 phương án miễn phí phù hợp mục tiêu, (3) hỏi lựa chọn khi cần, (4) tạo/sửa tệp web trực tiếp trong repo, (5) kiểm tra link, console, accessibility, reduced motion và hiển thị PC nếu có môi trường kiểm thử, (6) commit bằng công cụ GitHub được cấp quyền, (7) báo SHA, tệp thay đổi và kiểm tra Pages/Actions thực tế. Không khẳng định đã chạy browser test nếu chưa chạy.
+
+**Quy tắc bản quyền và chi phí:** chỉ chọn tính năng thật sự miễn phí, phân biệt miễn phí sử dụng với miễn phí phân phối lại; giữ attribution/license; không tải nguyên bộ nguồn không cần thiết; không nhúng token, key hoặc dữ liệu học sinh. Không cam kết dịch vụ bên thứ ba miễn phí vĩnh viễn. Hạn mức ChatGPT Free và quyền kết nối/ghi GitHub tùy tài khoản và phiên; không được hứa tất cả học sinh đều commit trực tiếp được.
+
+**Gợi ý tích hợp nội dung học:** thêm một mục tra cứu nguồn tham khảo vào bài công nghệ/hiệu ứng phù hợp, không phá thứ tự `curriculum.json`, không biến 12 repository thành 12 bài bắt buộc. Minh họa bằng demo thật, có mô tả chức năng, khi nào dùng, giới hạn và prompt yêu cầu ChatGPT; tránh biến bài học thành hướng dẫn cài phần mềm.
