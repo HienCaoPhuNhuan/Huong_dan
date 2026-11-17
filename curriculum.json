@@ -140,7 +140,7 @@
     "group": "design",
     "title": "Quan sát công nghệ chạy thật",
     "icon": "server",
-    "summary": "Three.js shader, Lottie, GSAP, Vue và mô phỏng quy trình xuất bản.",
+    "summary": "Three.js shader, Lottie, GSAP, Vue và sơ đồ động.",
     "goal": "Đối chiếu thư viện, dữ liệu và tài nguyên với kết quả hiển thị thật."
   },
   {

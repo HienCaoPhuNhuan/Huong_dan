@@ -16,7 +16,7 @@ for(const [file,doc] of docs){
 assert.equal(docs.get('index.html').querySelectorAll('.topic-band').length,3);
 assert.ok(docs.get('index.html').querySelector('[data-kinetic]'));
 assert.ok(!fs.existsSync(path.join(root,'web-thuyet-trinh.html')));
-assert.equal(docs.get('ke-chuyen-thi-giac.html').querySelectorAll('.lesson-content>section').length,8);
+assert.equal(docs.get('ke-chuyen-thi-giac.html').querySelectorAll('.lesson-content>section:not(.chapter-work)').length,8);
 assert.equal(docs.get('yeu-cau-chatgpt.html').querySelectorAll('#palette option').length,6);
 assert.ok(!docs.get('cong-nghe-do-hoa-web.html').getElementById('check-terms'),'self-test removed');
 assert.ok(!docs.get('cong-nghe-do-hoa-web.html').querySelector('a[href="#check"]'));

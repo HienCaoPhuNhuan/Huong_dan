@@ -1,4 +1,39 @@
-# Rà soát trùng lặp nội dung – Huong_dan (2026-11-02)
+# Rà soát trùng lặp nội dung – Huong_dan
+
+## Phân công 21 bài (cập nhật 2026-11-18)
+
+| Bài | Nội dung chính và việc học sinh làm |
+|---|---|
+| 01 · Web là gì | Phân biệt tệp, trình duyệt và URL đã xuất bản; vẽ đường đi của một lần tải trang. |
+| 02 · Tài khoản ChatGPT | Phân biệt Instructions, Memory và nội dung chat; chọn nơi đặt từng loại thông tin. |
+| 03 · Thiết lập GitHub | Quyền, repo, commit thật và bàn giao bằng README; kiểm tra đúng repo của nhóm. |
+| 04 · Tài nguyên | Chuẩn bị, lưu và ghi nguồn tệp; lập danh sách tệp cho một section. |
+| 05 · Thành phần | Chọn thành phần theo nhiệm vụ; quyết định khi nào cần bảng hoặc biểu đồ. |
+| 06 · Nguyên tắc | Thứ bậc, tương phản, khoảng trống; thử khả năng đọc từ xa. |
+| 07 · Bố cục | Trật tự đọc trong section và cấu trúc toàn bài; so sánh hai cách sắp xếp cùng chất liệu. |
+| 08 · Typography | Font, cỡ chữ, dấu và bản thay thế; thử font trên cùng tiêu đề. |
+| 09 · Media | Xử lý ảnh, video, âm thanh; kiểm tra riêng hình và tiếng. |
+| 10 · Animation | Trình tự, thời lượng, độ trễ và easing; điều chỉnh nhịp xuất hiện. |
+| 11 · Trigger | Điều kiện, kết hợp và vòng đời; chọn thời điểm chạy và cách quay lại. |
+| 12 · Transition | Chuyển giữa section, tiến/lùi và trạng thái; thử cùng một chuyển cảnh theo hai hướng. |
+| 13 · Interaction | Thao tác, trạng thái và phản hồi; kiểm tra một điều khiển bằng bàn phím. |
+| 14 · Phối lớp | Quan hệ nền, lớp chuyển động và lớp chữ; tắt từng lớp để đánh giá vai trò. |
+| 15 · Danh mục | Tra cứu mẫu theo mục đích; so sánh hai mẫu cùng nhiệm vụ. |
+| 16 · Kể chuyện | Tổ chức minh chứng và nhận xét bằng hình, dữ liệu và nhịp; kể một ý bằng ba khung. |
+| 17 · Công nghệ | Phân biệt tệp, bộ vẽ, thư viện và nền tảng; xác định phụ thuộc, không dạy lại định dạng. |
+| 18 · Chạy thật | Quan sát quan hệ giữa đầu vào và hiển thị trong ví dụ sống; thử đổi một biến. |
+| 19 · CodePen | Đọc cấu trúc mẫu, phụ thuộc, nguồn và quyền; lập hồ sơ một tham khảo. |
+| 20 · Prompt | Mục tiêu, Ngữ cảnh, Thực hiện, Đầu ra và nguồn môn học; soạn prompt để nhận bản nháp. |
+| 21 · Duyệt và trình bày | Đối chiếu bản xem thử, bản công khai và thiết bị; kiểm tra số liệu trước khi gửi link. |
+
+- **Bài 16** bỏ phần tóm tắt thư viện, prompt toàn dự án và checklist xuất bản; giữ bảng chọn tổ hợp theo mạch kể chuyện.
+- **Bài 18** giữ mô phỏng động nhưng chuyển nội dung sang chất liệu, cấu trúc, trình bày và trình duyệt. Không dạy lại quyền repo hay quy trình xuất bản.
+- **Bài 20** dẫn về bài 02 để ôn cá nhân hóa thay cho bảng hướng dẫn lặp. Bài 21 bắt đầu từ bản xem thử, không dạy lại cách lên ý tưởng và soạn prompt.
+- **Thư viện 12 mẫu** dùng để tham khảo theo nhu cầu. Prompt trong từng mẫu chỉ phục vụ mẫu đó và dừng ở đề xuất hoặc bản xem thử; không yêu cầu AI tự công bố.
+- Giữ những khái niệm phải xuất hiện ở các mức khác nhau, ví dụ trigger trong bài nhịp animation, demo trigger ở bài chuyên sâu và tên trigger trong thư viện. Không ghép các bài này vì nhiệm vụ thực hành khác nhau.
+- Dùng đầu trang tĩnh và bài áp dụng riêng, giữ mẫu tương tác ở đúng bài. Kiểm tra tự động cả đoạn trùng nguyên văn, thứ tự và liên kết; kiểm tra câu chữ gần nghĩa vẫn cần người đọc.
+
+## Ghi chú đợt 2026-11-02
 
 ## Phạm vi đã đọc
 Đã lấy nội dung của 21 tệp bài học trong curriculum.json, index.html và thu-vien-12-cong-cu.html, đối chiếu tiêu đề H1/H2, mục tiêu từng bài và vị trí thư viện mới. Đây là **rà soát cấu trúc và dấu hiệu chồng lấn nội dung**, không phải kiểm chứng trực quan tất cả tương tác trong trình duyệt.

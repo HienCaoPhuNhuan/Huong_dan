@@ -98,7 +98,7 @@ Kết quả rà soát: không còn đoạn hướng dẫn dài trùng nguyên v�
 | 3 | `lam-chu-cong-nghe.html` | Thiết bị, độ mượt, workflow và trình bày |
 | 3 | `tham-khao-codepen.html` | Tham khảo mã, giấy phép, VPN được phép |
 | 3 | `cong-nghe-do-hoa-web.html` | Thuật ngữ tài nguyên/rendering/thư viện/framework |
-| 3 | `cong-nghe-minh-hoa.html` | Three.js shader, Lottie online, GSAP, Vue và mô phỏng workflow |
+| 3 | `cong-nghe-minh-hoa.html` | Three.js shader, Lottie online, GSAP, Vue và sơ đồ đầu vào → hiển thị |
 
 Có 21 bài hướng dẫn, một trang chủ và một trang demo trình chiếu (23 tệp HTML). Trang chủ có đúng một mục cho mỗi bài, không tách nhiều mục cùng dẫn đến một bài dài. `curriculum.json` là thứ tự học và phân nhóm hiện hành; kiểm tra tự động đối chiếu mục trang chủ, mục tiêu bài và nút trước/sau với dữ liệu này.
 
@@ -107,7 +107,7 @@ Có 21 bài hướng dẫn, một trang chủ và một trang demo trình chiế
 - `styles.css`, `course.css`, `course.js`: giao diện và hành vi chung; ảnh hưởng nhiều bài, cần kiểm tra rộng khi sửa.
 - `kinetic.css/js`: bìa động và bài phối lớp. Không thay chính sách autoplay/reduced-motion để giải quyết sự cố riêng mà chưa kiểm chứng.
 - `library.css/js`, `library-icons.js`: thư viện trang chủ, tìm kiếm, theme, icon.
-- `lesson-motion.css/js`: trang trí và banner tự chạy cho 21 bài. Thêm bài mới thì cập nhật bảng `lessons`.
+- `chapter-edition.css`: đầu trang mới theo ba phần. Mỗi bài có `.chapter-heading`, icon riêng và `.chapter-work` chứa một việc áp dụng riêng; không phục hồi banner cũ. Xem phân công nội dung ở `RA-SOAT-TRUNG-LAP-NOI-DUNG.md`.
 - `motion-workshop.css/js`, `workshop-shader.js`: minh họa công nghệ trước đây.
 - `visual-story.css/js`: các demo kể chuyện thị giác mới, timer theo từng vùng, dữ liệu giả định.
 - `presentation-demo.css/js`: Reveal.js trong trang riêng; CSS được cách ly với website bằng iframe.

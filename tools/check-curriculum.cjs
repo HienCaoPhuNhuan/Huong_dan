@@ -2,11 +2,26 @@ const fs=require('node:fs'),path=require('node:path'),assert=require('node:asser
 const root=path.resolve(__dirname,'..'),lessons=JSON.parse(fs.readFileSync(path.join(root,'curriculum.json'),'utf8'));
 const read=f=>fs.readFileSync(path.join(root,f),'utf8'),doc=f=>new JSDOM(read(f)).window.document;
 const home=doc('index.html'),cards=[...home.querySelectorAll('.topic-links>a')];assert.equal(cards.length,lessons.length);assert.equal(new Set(lessons.map(l=>l.file)).size,lessons.length);assert.equal(new Set(lessons.map(l=>l.icon)).size,lessons.length);
+const workTitles=new Set(), proseOwners=new Map();
 assert.equal(crypto.createHash('sha256').update(home.querySelector('.kinetic-hero').outerHTML).digest('hex'),'bcae2dda90adf6b79450f8ad5bef18e4af20963abc2f118f9250ca8cc7312ca3','homepage cover changed');
 for(const [i,lesson]of lessons.entries()){
  assert.equal(cards[i].getAttribute('href'),lesson.file);assert.equal(cards[i].closest('.topic-band').id,lesson.group);assert.equal(cards[i].querySelector('[data-icon]').dataset.icon,lesson.icon);
  const d=doc(lesson.file),actions=d.querySelectorAll('.chapter-actions');assert.equal(actions.length,1,lesson.file+' needs one route');assert.equal(d.querySelector('.lesson-goal').textContent,'Kết quả cần đạt: '+lesson.goal);const links=[...actions[0].querySelectorAll('a')];assert.equal(links.length,3);assert.equal(links[0].getAttribute('href'),i?lessons[i-1].file:'index.html#web');assert.equal(links[1].getAttribute('href'),'index.html#'+lesson.group);assert.equal(links[2].getAttribute('href'),i<lessons.length-1?lessons[i+1].file:'index.html');
  assert.ok(!read(lesson.file).includes('không cần đọc hay tạo tệp README'));assert.ok(!/href="web-la-gi.html#(?:setup|security|readme-handoff)/.test(read(lesson.file)),lesson.file+' old internal setup link');
+ const chapter=d.querySelector('.chapter-heading'),work=d.querySelector('.chapter-work');
+ assert.equal(d.body.dataset.part,lesson.group);
+ assert.equal(chapter.querySelector('img').getAttribute('src'),'assets/icons/'+lesson.icon+'.svg');
+ assert.ok(chapter.querySelector('h1')&&chapter.querySelector('.lesson-goal'),lesson.file);
+ assert.equal(d.querySelectorAll('.chapter-work').length,1,lesson.file);
+ assert.ok(!workTitles.has(work.querySelector('h2').textContent),lesson.file+' repeated practice task');
+ workTitles.add(work.querySelector('h2').textContent);
+ assert.ok(!d.querySelector('[src^="lesson-motion.js"],[href^="lesson-motion.css"]'),lesson.file+' legacy chapter shell');
+ for(const p of d.querySelectorAll('main p,main li')){
+  const s=p.textContent.replace(/\s+/g,' ').trim();
+  if(s.length<80)continue;
+  assert.ok(!proseOwners.has(s)||proseOwners.get(s)===lesson.file,lesson.file+' duplicate paragraph from '+proseOwners.get(s));
+  proseOwners.set(s,lesson.file);
+ }
  for(const a of d.querySelectorAll('a[href]')){
   const url=new URL(a.getAttribute('href'),'https://guide.local/'+lesson.file);
   if(url.origin!=='https://guide.local')continue;
