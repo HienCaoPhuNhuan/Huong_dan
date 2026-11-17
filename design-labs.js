@@ -111,19 +111,27 @@ function updatePrompt(){
  const count=$('screens'),valid=count.validity.valid&&count.value!==''&&Number.isSafeInteger(Number(count.value))&&Number(count.value)>0;
  count.setAttribute('aria-invalid',String(!valid));
  const sections=valid?count.value:'[điền số nguyên dương]',topic=$('topic').value.trim()||'[chủ đề]',repo=$('repo-url').value.trim(),content=$('content').value.trim();
- const lines=[`Tôi cần bài thuyết trình web về “${topic}” cho ${$('audience').value.trim()||'[người xem]'}, dự kiến ${sections} section. Cách xem: ${$('format').value}.`,`Tôi thích ${$('palette').value.toLowerCase()}; chữ dễ đọc trên máy chiếu và điện thoại.`];
- lines.push(content?`Dàn ý và minh chứng của tôi:\n${content}`:'Hãy đề xuất dàn ý để tôi duyệt, đánh dấu những minh chứng hoặc nguồn cần tôi bổ sung.');
- if(repo)lines.push(`Repo bài thuyết trình của nhóm tôi: ${repo}. Hãy đọc phiên bản mới nhất nếu có quyền truy cập và sử dụng danh sách tài nguyên tôi cung cấp trong cuộc trò chuyện này. Sau khi tôi duyệt thiết kế, cập nhật bài trong repo của nhóm khi môi trường hỗ trợ và báo rõ trạng thái; nếu không truy cập hoặc ghi được, hãy nói rõ.`);
- else lines.push('Trước khi cập nhật, tôi sẽ cung cấp repo của bài.');
- const media=$('project-media').value.trim();if(media)lines.push(`Tài nguyên và cách dùng:\n${media}`);
- if($('design-brief')?.value.trim())lines.push('Các lựa chọn thiết kế đã duyệt:\n'+$('design-brief').value.trim());
- lines.push($('offline').checked?'Bài cần chạy khi mất mạng sau khi tải đủ tệp: dùng tài nguyên trong assets và phông hệ thống; báo tài nguyên ngoài cần thay thế.':'Cho tôi biết tài nguyên nào cần kết nối Internet.');
- lines.push('Hãy đề xuất bố cục và chuyển động phù hợp, không bịa số liệu hoặc nguồn. Nếu còn thiếu thông tin thiết yếu, hỏi gộp trong một lượt; nêu rõ các giả định để tôi kiểm tra.');
+ const field=(id,fallback)=>$(id)?.value.trim()||fallback;
+ const context=[
+  `Người nghe: ${field('audience','[người nghe]')}.\nMôn học, thời lượng và tiêu chí: ${field('lesson-context','[điền yêu cầu của môn học]')}.`,
+  `Tài liệu đối chiếu: ${field('lesson-sources','[gửi tệp, đoạn trích hoặc link; ghi tên và trang/mục/bảng]')}.`,
+  content&&'Dàn ý và minh chứng:\n'+content,
+  repo&&'Repo của nhóm: '+repo,
+  $('project-media').value.trim()&&'Media và cách dùng:\n'+$('project-media').value.trim(),
+  field('design-brief','')&&'Thiết kế đã duyệt:\n'+field('design-brief','')
+ ].filter(Boolean);
+ const lines=[
+  `Mục tiêu\nThuyết trình về “${topic}”. ${field('lesson-goal-input','[ghi điều người nghe cần hiểu hoặc làm được]')}`,
+  'Ngữ cảnh\n'+context.join('\n'),
+  'Thực hiện\nĐọc tài liệu tôi cung cấp và ghi rõ nguồn cho từng ý chính. Nếu không đọc được tệp hoặc thiếu bằng chứng, báo rõ và hỏi gộp; không đoán số liệu, trích dẫn hoặc nguồn. Đề xuất bản nháp để tôi đối chiếu và duyệt trước. Chưa tạo web, sửa repo hay công bố. Chỉ dựng bài từ nội dung đã duyệt khi tôi yêu cầu ở lượt sau; nếu không đọc hoặc ghi được repo, báo rõ.',
+  `Đầu ra\nLượt này: bảng nháp ${sections} section, mỗi section có tiêu đề, ý chính, minh chứng, nguồn (tên tệp, trang/mục/bảng nếu có) và điểm cần xác minh.\nSau khi tôi duyệt và yêu cầu dựng: bài thuyết trình web theo dạng “${$('format').value}”, ${$('palette').value.toLowerCase()}, chữ rõ trên máy chiếu; gửi bản xem thử để tôi duyệt lần cuối.\n`+
+  ($('offline').checked?'Bài cần chạy khi mất mạng sau khi tải đủ tệp; báo tài nguyên ngoài cần thay thế.':'Nêu tài nguyên nào cần kết nối Internet.')
+ ];
  const signature=JSON.stringify([lines,valid]);
  if(signature!==promptSignature){$('prompt-output').value=lines.join('\n\n');promptSignature=signature}
  $('copy-status').textContent=valid?'':'Nhập số section là số nguyên dương trước khi dùng bản yêu cầu.';
 }
-['topic','audience','screens','format','palette','content','offline','repo-url','project-media','design-brief'].forEach(id=>$(id)?.addEventListener('input',updatePrompt));
+['topic','audience','screens','format','palette','content','offline','repo-url','project-media','design-brief','lesson-context','lesson-sources','lesson-goal-input'].forEach(id=>$(id)?.addEventListener('input',updatePrompt));
 async function copyText(text,status,fallback){try{await navigator.clipboard.writeText(text);$(status).textContent='Đã sao chép.'}catch{if(fallback){$(fallback).focus();$(fallback).select()}$(status).textContent='Không sao chép tự động được. Chọn văn bản để sao chép hoặc tải tệp.'}}
 function downloadText(text,name){const a=document.createElement('a'),url=URL.createObjectURL(new Blob([text],{type:'text/plain;charset=utf-8'}));a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)}
 if($('copy-prompt')){

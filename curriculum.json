@@ -153,18 +153,18 @@
   },
   {
     "file": "yeu-cau-chatgpt.html",
-    "group": "design",
+    "group": "practice",
     "title": "Chốt yêu cầu và làm việc với AI",
     "icon": "edit",
-    "summary": "Gộp mục tiêu, nội dung, media và lựa chọn thiết kế thành prompt của bài.",
-    "goal": "Có yêu cầu đã duyệt, sửa đúng phạm vi và giữ phần đã chốt."
+    "summary": "Prompt bốn phần, nguồn môn học và bản nháp từng section.",
+    "goal": "Viết prompt bốn phần và cung cấp tài liệu môn học để duyệt bản nháp."
   },
   {
     "file": "lam-chu-cong-nghe.html",
-    "group": "design",
+    "group": "practice",
     "title": "Kiểm chứng và chuẩn bị trình bày",
     "icon": "monitor",
-    "summary": "Quy trình hoàn thiện, kiểm tra thiết bị/độ mượt và tổng duyệt trên máy chiếu.",
-    "goal": "Kiểm tra phiên bản thực, sửa đúng lỗi và sẵn sàng thuyết trình."
+    "summary": "Học sinh duyệt nội dung cuối, kiểm tra trang thật và tổng duyệt trên máy chiếu.",
+    "goal": "Đối chiếu bài web với nguồn môn học, duyệt bản cuối và thử trước khi trình bày."
   }
 ]

@@ -36,7 +36,7 @@ Học lần lượt theo `curriculum.json`: nền tảng và tài khoản → qu
 
 1. Tiếng Việt, trực quan: học sinh hiểu kết quả, thuật ngữ thiết kế, lựa chọn, prompt và kiểm chứng; không học lập trình đầy đủ.
 2. Học sinh dùng ChatGPT Free để yêu cầu AI tạo mã và, khi có công cụ phù hợp, sửa/commit GitHub. Không đưa ứng dụng Codex thành bước học sinh phải dùng.
-3. Ba nhóm trang chủ: Web là gì; Các khái niệm trong thiết kế; Làm chủ công nghệ. Mỗi bài có trang riêng, không khôi phục trang tổng hợp cũ `web-thuyet-trinh.html`.
+3. Ba phần trang chủ: Web là gì; Thiết kế và vận dụng công nghệ (bài 4–19); Làm bài thuyết trình với AI (bài 20–21). Mỗi bài có trang riêng, không khôi phục trang tổng hợp cũ `web-thuyet-trinh.html`.
 4. Giữ nguyên bìa trang chủ: ảnh/video trường, chữ chạy, hạt và thông điệp. Không thay bằng bìa khác khi cập nhật phần học.
 5. Thiết kế chính cho PC/máy chiếu, chiều rộng tối thiểu theo CSS hiện tại. Không tự thêm bố cục điện thoại cho website này. Điện thoại vẫn được nhắc trong bài bảo mật GitHub Mobile.
 6. Ví dụ tự chạy khi nhìn thấy, nghỉ ngoài vùng xem/tab ẩn, tôn trọng prefers-reduced-motion. Không tự phát tiếng. Thao tác tương tác thực vẫn cần hành động của người dùng; bài nói thật không bắt buộc tự chuyển section.
@@ -63,8 +63,8 @@ Thứ tự học hiện tại: **hiểu web → tài khoản ChatGPT → setup G
 | Chuyển trạng thái / chuyển section | `transition.html` | Nghĩa rộng là chuyển trạng thái; bài này tập trung chuyển section, không mâu thuẫn catalog |
 | Tổ hợp ứng dụng có công nghệ thật | `ke-chuyen-thi-giac.html` | Rive/ECharts/Swiper/Reveal vẫn giữ nguyên demo |
 | Phân loại công nghệ và cách chạy | `cong-nghe-do-hoa-web.html`, `cong-nghe-minh-hoa.html` | Workshop là minh họa, không giả làm setup hay deploy thật |
-| Soạn yêu cầu đã duyệt | `yeu-cau-chatgpt.html` | Không bắt đầu lại đăng ký/cá nhân hóa ở cuối bài |
-| Quy trình hoàn thiện và tổng duyệt | `lam-chu-cong-nghe.html#workflow` | Các mô phỏng dẫn về đây; không sao chép một quy trình dài khác |
+| Soạn yêu cầu đã duyệt | `yeu-cau-chatgpt.html` | Prompt Mục tiêu → Ngữ cảnh → Thực hiện → Đầu ra; chuẩn bị nguồn môn học và duyệt bản nháp trước khi dựng web |
+| Quy trình hoàn thiện và tổng duyệt | `lam-chu-cong-nghe.html#workflow` | Học sinh đối chiếu bản web với nguồn, duyệt trước khi công bố và kiểm tra URL thật; không để AI tự duyệt |
 
 Quy tắc bảo trì:
 - Mỗi bài có một mục tiêu; nhắc lại ngắn có ngữ cảnh là được, không chép lại nguyên quy trình ở nhiều trang.
